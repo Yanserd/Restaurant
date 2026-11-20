@@ -131,7 +131,7 @@ code{background:rgba(255,255,255,.1);padding:0 .35rem;border-radius:6px}
   </header>
 
   <div class="wrap">
-    <nav class="tabs" id="tabs" aria-label="Secciones del sitio"><button data-t="menu" aria-pressed="true">Menú</button><button data-t="events" aria-pressed="false">Eventos</button><button data-t="moments" aria-pressed="false">Momentos</button><button data-t="faq" aria-pressed="false">Preguntas</button><button data-t="feed" aria-pressed="false">Instagram</button></nav>
+    <nav class="tabs" id="tabs" aria-label="Secciones del sitio"><button data-t="menu" aria-pressed="true">Menú</button><button data-t="events" aria-pressed="false">Eventos</button><button data-t="moments" aria-pressed="false">Momentos</button><button data-t="faq" aria-pressed="false">Preguntas</button><button data-t="feed" aria-pressed="false">Instagram</button><button data-t="rate" aria-pressed="false">Tasa</button></nav>
     <div id="p-menu">
     <section class="stats" id="stats" aria-label="Resumen"></section>
     <div class="tools">
@@ -154,7 +154,7 @@ code{background:rgba(255,255,255,.1);padding:0 .35rem;border-radius:6px}
     <div class="chips" id="cats" role="group" aria-label="Categorías"></div>
     <div class="items" id="items"></div>
     </div>
-    <div id="panels"><div id="p-events" hidden></div><div id="p-moments" hidden></div><div id="p-faq" hidden></div><div id="p-feed" hidden></div></div>
+    <div id="panels"><div id="p-events" hidden></div><div id="p-moments" hidden></div><div id="p-faq" hidden></div><div id="p-feed" hidden></div><div id="p-rate" hidden></div></div>
   </div>
 
   <div class="save glass" id="save" role="status"><p id="sn"></p><button class="btn" id="disc">Descartar</button><button class="btn sun" id="sv">Guardar</button></div>
@@ -165,6 +165,7 @@ code{background:rgba(255,255,255,.1);padding:0 .35rem;border-radius:6px}
 
 <script src="menu-data.js"></script>
 <script src="site-core.js"></script>
+<script src="currency-core.js"></script>
 <script>
 const PIN="1529";                         // ← cambiar antes de entregar
 const KEY=window.MENU_KEY||"m1529v3",CATS=window.MENU_CATS||["Entradas","Principales","Bebidas","Postres"];
@@ -221,7 +222,7 @@ $("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(
 $("#q").addEventListener("input",e=>{q=e.target.value;render()});
 $("#add").onclick=()=>{const x={id:++uid,c:cat=="all"?CATS[0]:cat,n:"",p:0,d:"",i:"",a:true};items.unshift(x);q="";$("#q").value="";st="all";render();const n=$(`.it[data-id="${x.id}"] .nm`);n.scrollIntoView({block:"center",behavior:"smooth"});n.focus()};
 
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(clean()));localStorage.setItem(SKEY,JSON.stringify(site));mark();siteBase=secSig();stats();return true}catch(e){toast("Sin espacio: usa fotos más livianas o rutas img/…");return false}}
+function persist(){if(site.rate?.mode==="manual"){try{M1529Rate.resolve(site.rate)}catch(_){toast("Indica una tasa manual válida antes de guardar");return false}}try{localStorage.setItem(KEY,JSON.stringify(clean()));localStorage.setItem(SKEY,JSON.stringify(site));mark();siteBase=secSig();stats();return true}catch(e){toast("Sin espacio: usa fotos más livianas o rutas img/…");return false}}
 $("#sv").onclick=()=>{if(persist())toast("Guardado ✓ El sitio ya muestra los cambios")};
 $("#disc").onclick=async()=>{if(await ask("¿Descartar los cambios sin guardar?","Descartar")){load();render();renderPanels()}};
 addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key=="s"&&!$("#app").hidden){e.preventDefault();$("#sv").click()}});
@@ -229,7 +230,7 @@ addEventListener("beforeunload",e=>{if(!$("#app").hidden&&changes()){e.preventDe
 
 const dl=(name,txt,type)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 const closeMore=()=>document.querySelector("details.more").open=false;
-$("#pub").onclick=()=>{closeMore();dl("menu-data.js",`window.MENU_KEY=${JSON.stringify(KEY)};\nwindow.MENU_CATS=${JSON.stringify(CATS)};\nwindow.MENU_SAMPLE=${JSON.stringify(clean(),null,1)};\nwindow.SITE_KEY=${JSON.stringify(SKEY)};\nwindow.SITE_SAMPLE=${JSON.stringify(site,null,1)};\n`,"text/javascript");toast("Reemplaza menu-data.js en el repositorio para publicar")};
+$("#pub").onclick=()=>{closeMore();if(site.rate?.mode==="manual"){try{M1529Rate.resolve(site.rate)}catch(_){toast("Indica una tasa manual válida antes de publicar");return}}dl("menu-data.js",`window.MENU_KEY=${JSON.stringify(KEY)};\nwindow.MENU_CATS=${JSON.stringify(CATS)};\nwindow.MENU_SAMPLE=${JSON.stringify(clean(),null,1)};\nwindow.SITE_KEY=${JSON.stringify(SKEY)};\nwindow.SITE_SAMPLE=${JSON.stringify(site,null,1)};\n`,"text/javascript");toast("Reemplaza menu-data.js en el repositorio para publicar")};
 $("#exp").onclick=()=>{closeMore();dl("menu-1529.json",JSON.stringify(clean(),null,1),"application/json")};
 $("#imp").onclick=()=>{closeMore();$("#impf").click()};
 $("#impf").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const a=JSON.parse(await f.text());if(!Array.isArray(a)||!a.every(x=>x&&x.n))throw 0;if(await ask(`¿Reemplazar el menú actual por ${a.length} platos importados?`,"Importar")){items=a.map(x=>({id:++uid,c:CATS.includes(x.c)?x.c:CATS[0],n:x.n,p:+x.p||0,d:x.d||"",i:x.i||"",a:x.a!==false}));items.forEach(probe);render()}}catch(_){toast("Archivo no válido")}e.target.value=""};
@@ -239,9 +240,9 @@ $("#rst").onclick=async()=>{closeMore();if(await ask("¿Volver al menú original
 /* ===== contenido del sitio: eventos, momentos, preguntas, instagram ===== */
 const SKEY=window.SITE_KEY||"m1529site1";
 let site=null,siteBase={};
-const secSig=()=>({events:JSON.stringify(site.events),moments:JSON.stringify(site.moments),faq:JSON.stringify(site.faq),feed:JSON.stringify(site.feed)});
+const secSig=()=>({events:JSON.stringify(site.events),moments:JSON.stringify(site.moments),faq:JSON.stringify(site.faq),feed:JSON.stringify(site.feed),rate:JSON.stringify(site.rate)});
 function loadSite(){let v;try{v=JSON.parse(localStorage.getItem(SKEY))}catch(e){}
- site=Object.assign(JSON.parse(JSON.stringify(window.SITE_SAMPLE)),v||{});site.feed=Object.assign({mode:"manual",max:9,source:"",posts:[]},site.feed);siteBase=secSig()}
+ site=Object.assign(JSON.parse(JSON.stringify(window.SITE_SAMPLE)),v||{});site.feed=Object.assign({mode:"manual",max:9,source:"",posts:[]},site.feed);site.rate=Object.assign({mode:"auto",currency:"USD",manualRate:"",manualDate:""},site.rate);siteBase=secSig()}
 const siteChanges=()=>{const c=secSig();return Object.keys(c).filter(k=>c[k]!==siteBase[k]).length};
 const L={
  "events.texts":{get:()=>site.events.texts,f:[["tag","Etiqueta","t"],["title","Título","t"],["body","Texto (usa **negrita**)","a"]],blank:()=>({tag:"Próximamente",title:"",body:""})},
@@ -271,11 +272,46 @@ function renderFeed(){const F=site.feed,auto=F.mode=="auto";
  :`<p class="hint">Pega el enlace de la publicación nueva: entra primero y la más antigua sale sola.</p>
  <div class="addf"><input id="nu" placeholder="https://www.instagram.com/p/…" aria-label="Enlace"><input id="nt" placeholder="Título" aria-label="Título"><textarea id="nb" rows="2" placeholder="Descripción corta" aria-label="Descripción"></textarea><button class="btn sun" data-fadd>Agregar y rotar</button></div>`}</div>
  <h2 class="sub">${auto?"Respaldo manual (si Instagram no responde)":"Publicaciones"}</h2>${listHTML("feed.posts","Fila vacía")}`}
+function renderRate(){
+ const R=site.rate,manual=R.mode==="manual",currency=R.currency==="EUR"?"EUR":"USD";
+ $("#p-rate").innerHTML=`<h2 class="sub">Tasa cambiaria</h2>
+  <p class="hint">La página obtiene la tasa oficial del BCV desde la API de BCV Today. Elige USD o EUR y el modo de actualización.</p>
+  <div class="rowc nu fs">
+   <label class="f"><span class="lb">Moneda BCV</span><select data-rate-currency aria-label="Moneda BCV"><option value="USD" ${currency==="USD"?"selected":""}>USD · dólar</option><option value="EUR" ${currency==="EUR"?"selected":""}>EUR · euro</option></select></label>
+   <div class="seg" role="group" aria-label="Modo de actualización"><button data-rate-mode="auto" aria-pressed="${!manual}">Automática (API)</button><button data-rate-mode="manual" aria-pressed="${manual}">Manual</button></div>
+   <label class="f"><span class="lb">Tasa manual · Bs por 1 ${currency}</span><input data-rate-manual type="number" min="0.0001" step="0.0001" inputmode="decimal" value="${esc(R.manualRate)}" placeholder="Ej. 918,7662" ${manual?"":"disabled"}></label>
+   <label class="f"><span class="lb">Fecha valor (opcional)</span><input data-rate-date type="date" value="${esc(R.manualDate)}" ${manual?"":"disabled"}></label>
+   <div class="fa"><button class="btn sun" data-rate-fetch>Consultar tasa de la API</button><span class="hint" id="rate-admin-status">${esc(rateStatus)}</span></div>
+   <p class="hint">El modo automático se actualiza en el sitio cada 30 minutos. Para publicar un ajuste manual, usa «Más → Publicar» y reemplaza <code>menu-data.js</code> en el servidor, igual que los cambios del menú.</p>
+  </div>`;
+}
+let rateStatus="";
 function renderPanels(){
  $("#p-events").innerHTML=`<h2 class="sub">Anuncios</h2>${listHTML("events.texts","Nuevo anuncio")}<h2 class="sub">Videos de eventos</h2><p class="hint">Copia el video a la carpeta <code>img/</code> del sitio y escribe su ruta (o usa «Elegir»).</p>${listHTML("events.videos","Nuevo video")}`;
  $("#p-moments").innerHTML=`<h2 class="sub">Momentos</h2><p class="hint">Fotos y videos de la galería. Se reconoce solo si es foto o video por la extensión.</p>${listHTML("moments","Nuevo momento")}`;
  $("#p-faq").innerHTML=`<h2 class="sub">Preguntas frecuentes</h2>${listHTML("faq","Nueva pregunta")}`;
- renderFeed()}
+ renderFeed();renderRate()}
+const ratePanel=$("#p-rate");
+ratePanel.addEventListener("input",e=>{
+ if(e.target.hasAttribute("data-rate-manual")){site.rate.manualRate=e.target.value;stats()}
+ if(e.target.hasAttribute("data-rate-date")){site.rate.manualDate=e.target.value;stats()}
+});
+ratePanel.addEventListener("change",e=>{
+ if(e.target.hasAttribute("data-rate-currency")){site.rate.currency=e.target.value;renderRate();stats()}
+});
+ratePanel.addEventListener("click",async e=>{
+ const mode=e.target.closest("[data-rate-mode]");
+ if(mode){site.rate.mode=mode.dataset.rateMode;renderRate();stats();return}
+ const fetchButton=e.target.closest("[data-rate-fetch]");if(!fetchButton)return;
+ fetchButton.disabled=true;rateStatus="Consultando…";renderRate();
+ try{
+  const response=await fetch(M1529Rate.API_URL,{cache:"no-store"});if(!response.ok)throw new Error("HTTP "+response.status);
+  const current=M1529Rate.fromApi(await response.json(),site.rate.currency);
+  site.rate.manualRate=String(current.rate);site.rate.manualDate=current.effectiveDate;
+  rateStatus=`API: ${M1529Rate.format(current.rate)} Bs. por ${current.currency} · ${M1529Rate.formatDate(current.effectiveDate)}`;
+ }catch(err){rateStatus="No se pudo consultar la API. Revisa la conexión."}
+ renderRate();stats();
+});
 function addPost(){const u=$("#nu").value.trim(),t=$("#nt").value.trim();
  if(!IG.parse(u))return toast("Pega un enlace válido de Instagram");if(!t)return toast("Escribe un título");
  const F=site.feed;F.posts.unshift({u,date:IG.short(Date.now()),title:t,body:$("#nb").value.trim()});let out="";while(F.posts.length>F.max)out=F.posts.pop().title;
@@ -302,7 +338,7 @@ PN.addEventListener("click",async e=>{const b=e.target.closest("button");if(!b)r
  const r=rowOf(e);if(!r)return;const a=L[r.key].get();
  if(d.mv){const j=r.i+ +d.mv;if(j<0||j>=a.length)return;[a[r.i],a[j]]=[a[j],a[r.i]];rerender(r.key);stats()}
  if(b.hasAttribute("data-rm")&&await ask("¿Eliminar este elemento?","Eliminar")){a.splice(r.i,1);rerender(r.key);stats()}});
-$("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-pressed",x==b));["menu","events","moments","faq","feed"].forEach(k=>$("#p-"+k).hidden=k!=b.dataset.t)});
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-pressed",x==b));["menu","events","moments","faq","feed","rate"].forEach(k=>$("#p-"+k).hidden=k!=b.dataset.t)});
 
 /* acceso */
 function enter(){$("#login").hidden=true;$("#app").hidden=false;load();render();renderPanels()}

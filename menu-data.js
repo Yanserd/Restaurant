@@ -207,5 +207,11 @@ window.SITE_SAMPLE={
     "body": "Con lomito y aceitunas, y a dos salsas."
    }
   ]
+ },
+ "rate": {
+  "mode": "auto",
+  "currency": "USD",
+  "manualRate": "",
+  "manualDate": ""
  }
 };
