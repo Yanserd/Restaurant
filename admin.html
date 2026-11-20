@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel · 1529 Restaurant</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#e9a23b;--ember:#e2552b;--g0:#0d1c13;--g1:#142a1c;--g2:#1b3826;--g3:#27503a;--cream:#f4ead8;--mut:rgba(244,234,216,.62);--ok:#5be08a;--bad:#ff7d63;--serif:"Fraunces",Georgia,serif;--sans:"Manrope",system-ui,sans-serif;--r:20px;--sh:#08130c;--hi:#1f4030}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+body{font:400 1rem/1.5 var(--sans);color:var(--cream);min-height:100svh;-webkit-font-smoothing:antialiased;background:radial-gradient(900px 520px at 88% -8%,rgba(233,162,59,.2),transparent 60%),radial-gradient(700px 520px at -10% 108%,rgba(226,85,43,.14),transparent 60%),var(--g0)}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.glass{background:rgba(255,255,255,.06);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);box-shadow:0 18px 40px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.12)}
+.nu{background:var(--g1);border-radius:var(--r);box-shadow:8px 8px 18px var(--sh),-6px -6px 16px var(--hi)}
+.btn{border:0;border-radius:999px;padding:.7rem 1.2rem;min-height:44px;font-weight:700;font-size:.88rem;background:var(--g2);box-shadow:4px 4px 10px var(--sh),-3px -3px 9px var(--hi);transition:transform .2s,box-shadow .2s;white-space:nowrap}
+a.btn{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}
+.btn.sun{background:linear-gradient(135deg,var(--sun),var(--ember));color:#fff;box-shadow:0 8px 24px rgba(226,85,43,.4)}
+.mark{font:300 4rem/1 var(--serif);background:linear-gradient(135deg,var(--sun),var(--ember));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
+/* login */
+.login{min-height:100svh;display:grid;place-items:center;padding:1.2rem}
+.lcard{width:min(390px,100%);padding:2.4rem 1.8rem;text-align:center}
+.lcard p{color:var(--mut);margin:.4rem 0 1.4rem;font-size:.92rem}
+.pin{width:100%;border:0;border-radius:14px;padding:1rem;text-align:center;font-size:1.5rem;letter-spacing:.5em;background:var(--g0);box-shadow:inset 4px 4px 10px var(--sh),inset -3px -3px 9px var(--hi);margin-bottom:.9rem}
+.err{color:var(--bad);font-size:.85rem;min-height:1.3rem;margin-bottom:.6rem}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.lcard .btn{width:100%}
+.back{display:inline-block;margin-top:1.2rem;color:var(--mut);font-size:.85rem}
+/* app */
+.top{position:sticky;top:0;z-index:20;margin:.7rem;padding:.6rem 1rem;display:flex;align-items:center;gap:.8rem;justify-content:space-between;margin-top:calc(.7rem + env(safe-area-inset-top,0px))}
+.top .l{display:flex;align-items:center;gap:.8rem}.top .mark{font-size:2rem}
+.top h1{font:400 1.15rem var(--serif)}.top small{display:block;color:var(--mut);font-size:.75rem;margin-top:-.15rem}
+.top .r{display:flex;gap:.5rem}
+.wrap{width:min(1240px,100% - 1.4rem);margin:0 auto;padding-bottom:7rem}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin:1.2rem 0}
+.stat{padding:1rem 1.1rem;text-align:left;border:0;transition:transform .2s}
+.stat:hover{transform:translateY(-2px)}
+.stat b{display:block;font:300 2.2rem/1 var(--serif)}.stat span{font-size:.78rem;color:var(--mut)}
+.stat.on{box-shadow:inset 4px 4px 10px var(--sh),inset -3px -3px 9px var(--hi);outline:1px solid rgba(233,162,59,.5)}
+.stat.warn b{color:var(--sun)}
+.tools{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:.9rem}
+.search{flex:1 1 240px;display:flex;align-items:center;gap:.6rem;padding:0 1rem;border-radius:999px;background:var(--g0);box-shadow:inset 3px 3px 8px var(--sh),inset -2px -2px 7px var(--hi)}
+.search input{flex:1;border:0;background:none;padding:.8rem 0;min-width:0;font-size:16px}.search input:focus{outline:0}
+.chips{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem .1rem .9rem;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:999px;padding:.5rem 1rem;font-size:.82rem;font-weight:600;color:var(--mut);min-height:40px}
+.chip[aria-pressed=true]{background:var(--cream);color:var(--g1);border-color:var(--cream)}
+details.more{position:relative}details.more summary{list-style:none}details.more summary::-webkit-details-marker{display:none}
+.menu{position:absolute;right:0;top:calc(100% + .5rem);z-index:30;min-width:240px;padding:.5rem;display:grid;gap:.15rem;background:rgba(20,42,28,.96)}
+.menu button{border:0;background:none;text-align:left;padding:.7rem .9rem;border-radius:12px;font-size:.9rem}.menu button:hover{background:rgba(255,255,255,.08)}
+.menu hr{border:0;border-top:1px solid rgba(255,255,255,.12);margin:.3rem 0}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.2rem}
+.it{overflow:hidden;transition:opacity .25s,transform .25s}.it.off .th img{filter:grayscale(.9) brightness(.7)}.it.off{opacity:.78}
+.th{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,var(--g3),var(--ember));display:grid;place-items:center;overflow:hidden}
+.th .ltr{font:300 3.4rem var(--serif);opacity:.5}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.th::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 40%,rgba(0,0,0,.45));pointer-events:none}
+.sw{position:absolute;top:.6rem;left:.6rem;z-index:2;display:flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.3);background:rgba(13,28,19,.6);backdrop-filter:blur(8px);border-radius:999px;padding:.3rem .8rem .3rem .35rem;font-size:.75rem;font-weight:700;min-height:36px}
+.sw i{width:34px;height:20px;border-radius:99px;background:#6b6b6b;position:relative;transition:.25s}.sw i::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.25s}
+.sw[aria-checked=true] i{background:var(--ok)}.sw[aria-checked=true] i::after{left:16px}
+.ph{position:absolute;right:.6rem;bottom:.6rem;z-index:2;padding:.45rem .85rem;border-radius:999px;font-size:.76rem;font-weight:700;background:rgba(13,28,19,.65);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);cursor:pointer;min-height:36px;display:flex;align-items:center}
+.rm{position:absolute;top:.6rem;right:.6rem;z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(13,28,19,.65);backdrop-filter:blur(8px)}
+.bd{padding:1rem 1.1rem 1rem;display:grid;gap:.7rem}
+.bd input,.bd select,.bd textarea{width:100%;border:0;border-radius:12px;padding:.7rem .85rem;background:var(--g0);box-shadow:inset 3px 3px 8px var(--sh),inset -2px -2px 7px var(--hi);font-size:16px}
+.bd .nm{font:400 1.25rem var(--serif);padding:.6rem .85rem}
+.bd textarea{resize:vertical;min-height:4.2rem;font-size:.9rem}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.pr{position:relative}.pr span{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--sun);font-weight:700}.pr input{padding-left:1.7rem;font-weight:700;color:var(--sun)}
+.ft{display:flex;justify-content:space-between}.ft button{border:0;background:none;color:var(--mut);font-size:.8rem;padding:.4rem .2rem;min-height:36px}.ft .dg{color:var(--bad)}
+.empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--mut)}
+.save{position:fixed;left:50%;transform:translate(-50%,140%);bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:40;width:min(560px,100% - 1.4rem);padding:.7rem .8rem .7rem 1.2rem;display:flex;align-items:center;gap:.8rem;background:rgba(20,42,28,.92);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.save.show{transform:translate(-50%,0)}
+.save p{flex:1;font-size:.9rem;font-weight:600}.save p::before{content:"●";color:var(--sun);margin-right:.5rem}
+.toast{position:fixed;left:50%;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;z-index:60;padding:.8rem 1.3rem;border-radius:999px;background:var(--cream);color:var(--g1);font-weight:700;font-size:.88rem;pointer-events:none;transition:.3s;max-width:calc(100% - 2rem);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.dlg{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:1rem;background:rgba(5,12,8,.7);backdrop-filter:blur(6px)}
+.dlg .box{width:min(380px,100%);padding:1.6rem}.dlg p{margin-bottom:1.2rem}.dlg .a{display:flex;gap:.6rem;justify-content:flex-end}
+@media(max-width:860px){.stats{grid-template-columns:repeat(3,1fr)}.stat b{font-size:1.8rem}}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.top h1{font-size:1rem}.top .r .btn span{display:none}.items{grid-template-columns:1fr}.save{padding-left:1rem}.save p{font-size:.82rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* secciones del sitio */
+.tabs{display:flex;gap:.3rem;overflow-x:auto;margin:1.2rem 0 0;padding:.3rem;scrollbar-width:none;border-radius:999px;width:fit-content;max-width:100%;background:rgba(0,0,0,.28)}.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;border:0;background:none;padding:.65rem 1.3rem;border-radius:999px;font-weight:700;font-size:.88rem;color:var(--mut);min-height:44px}
+.tabs button[aria-pressed=true]{background:var(--cream);color:var(--g1)}
+.sub{font:300 1.7rem var(--serif);margin:1.8rem 0 .5rem}
+.hint{color:var(--mut);font-size:.85rem;margin-bottom:.8rem}
+code{background:rgba(255,255,255,.1);padding:0 .35rem;border-radius:6px}
+.rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;margin-bottom:1rem}
+.rowc{padding:1rem 1.1rem}.rh{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--g3);font-size:.8rem;font-weight:700;flex:none}.sp{flex:1}
+.pv{width:56px;height:40px;border-radius:10px;object-fit:cover;background:var(--g3);display:grid;place-items:center;flex:none}
+.mv{display:flex;gap:.3rem}.mv button{width:38px;height:38px;border-radius:10px;border:0;background:var(--g2);box-shadow:3px 3px 8px var(--sh),-2px -2px 6px var(--hi)}.mv button:disabled{opacity:.3}.mv .dg{color:var(--bad)}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}.f{display:grid;gap:.25rem}.f.full{grid-column:1/-1}.f>.lb{font-size:.74rem;color:var(--mut);font-weight:600}
+.f input,.f textarea,.addf input,.addf textarea{width:100%;border:0;border-radius:12px;padding:.65rem .8rem;background:var(--g0);box-shadow:inset 3px 3px 8px var(--sh),inset -2px -2px 7px var(--hi);font-size:16px}
+.pick{display:flex;gap:.5rem}.pick input{flex:1;min-width:0}.pk{display:inline-flex;align-items:center;cursor:pointer;padding:.5rem 1rem}
+.add{margin-bottom:1rem}
+.fs{display:grid;gap:.9rem;margin-bottom:.5rem}
+.seg{display:flex;gap:.3rem;padding:.3rem;border-radius:999px;background:rgba(0,0,0,.28);width:fit-content;max-width:100%;overflow-x:auto}
+.seg button{border:0;background:none;padding:.6rem 1.1rem;border-radius:999px;font-weight:700;font-size:.85rem;color:var(--mut);min-height:42px;white-space:nowrap}
+.seg button[aria-pressed=true]{background:linear-gradient(135deg,var(--sun),var(--ember));color:#fff}
+.rng{display:flex;align-items:center;gap:.8rem;font-size:.85rem}.rng input{flex:1;max-width:260px;accent-color:var(--sun)}.rng b{color:var(--sun);min-width:1.6rem}
+.addf{display:grid;gap:.6rem}.fa{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}.fa .hint{margin:0}
+.fprev{display:grid;gap:.3rem;font-size:.85rem;color:var(--mut)}.fprev b{color:var(--sun);margin-right:.4rem}
+@media(max-width:560px){.fg{grid-template-columns:1fr}.rows{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<main class="login" id="login">
+  <form class="lcard glass" id="lf" autocomplete="off">
+    <div class="mark">1529</div>
+    <p>Panel del restaurante</p>
+    <input class="pin" id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" aria-label="PIN de acceso" autofocus>
+    <div class="err" id="err" role="alert"></div>
+    <button class="btn sun" type="submit">Entrar</button>
+    <a class="back" href="index.html">← Volver al sitio</a>
+  </form>
+</main>
+
+<div id="app" hidden>
+  <header class="top glass">
+    <div class="l"><div class="mark">1529</div><div><h1>Panel del menú</h1><small>Mil Quinientos Veintinueve</small></div></div>
+    <div class="r">
+      <a class="btn" href="index.html" target="_blank" rel="noopener">↗ <span>Ver sitio</span></a>
+      <button class="btn" id="out">⎋ <span>Salir</span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="tabs" id="tabs" aria-label="Secciones del sitio"><button data-t="menu" aria-pressed="true">Menú</button><button data-t="events" aria-pressed="false">Eventos</button><button data-t="moments" aria-pressed="false">Momentos</button><button data-t="faq" aria-pressed="false">Preguntas</button><button data-t="feed" aria-pressed="false">Instagram</button></nav>
+    <div id="p-menu">
+    <section class="stats" id="stats" aria-label="Resumen"></section>
+    <div class="tools">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Buscar plato…" aria-label="Buscar plato"></label>
+      <button class="btn sun" id="add">+ Nuevo plato</button>
+      <details class="more">
+        <summary class="btn">⋯ Más</summary>
+        <div class="menu glass">
+          <button id="allon">Marcar todo como disponible</button>
+          <hr>
+          <button id="pub">Publicar: descargar menu-data.js (todo el sitio)</button>
+          <button id="exp">Exportar copia (.json)</button>
+          <button id="imp">Importar copia (.json)</button>
+          <hr>
+          <button id="rst">Restaurar menú original</button>
+        </div>
+      </details>
+      <input type="file" id="impf" accept="application/json" hidden>
+    </div>
+    <div class="chips" id="cats" role="group" aria-label="Categorías"></div>
+    <div class="items" id="items"></div>
+    </div>
+    <div id="panels"><div id="p-events" hidden></div><div id="p-moments" hidden></div><div id="p-faq" hidden></div><div id="p-feed" hidden></div></div>
+  </div>
+
+  <div class="save glass" id="save" role="status"><p id="sn"></p><button class="btn" id="disc">Descartar</button><button class="btn sun" id="sv">Guardar</button></div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="dlg" id="dlg" hidden><div class="box glass"><p id="dt"></p><div class="a"><button class="btn" id="dn">Cancelar</button><button class="btn sun" id="dy">Confirmar</button></div></div></div>
+
+<script src="menu-data.js"></script>
+<script src="site-core.js"></script>
+<script>
+const PIN="1529";                         // ← cambiar antes de entregar
+const KEY=window.MENU_KEY||"m1529v3",CATS=window.MENU_CATS||["Entradas","Principales","Bebidas","Postres"];
+const $=s=>document.querySelector(s),esc=t=>String(t??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const norm=t=>String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const slug=t=>norm(t).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+let uid=0,items=[],base=new Map(),q="",st="all",cat="all",files={};
+const clean=()=>items.map(({id,...r})=>r);
+const sig=x=>JSON.stringify([x.c,x.n,x.p,x.d,x.i,x.a]);
+function load(){let a;try{a=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+ if(!Array.isArray(a))a=JSON.parse(JSON.stringify(window.MENU_SAMPLE||[]));
+ items=a.map(x=>({id:++uid,c:CATS.includes(x.c)?x.c:CATS[0],n:x.n||"",p:+x.p||0,d:x.d||"",i:x.i||"",a:x.a!==false}));
+ mark();items.forEach(x=>probe(x));loadSite()}
+const mark=()=>{base=new Map(items.map(x=>[x.id,sig(x)]))};
+function probe(x){const s=slug(x.n);if(s in files)return;files[s]=false;const i=new Image();i.onload=()=>{files[s]=true;stats()};i.src=`img/${s}.jpg`}
+const noPhoto=x=>!x.i&&!files[slug(x.n)];
+const menuChanges=()=>items.filter(x=>base.get(x.id)!==sig(x)).length+[...base.keys()].filter(id=>!items.some(x=>x.id==id)).length;
+const changes=()=>menuChanges()+(site?siteChanges():0);
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),2600)}
+function ask(msg,yes="Confirmar"){return new Promise(r=>{$("#dt").textContent=msg;$("#dy").textContent=yes;$("#dlg").hidden=false;$("#dy").focus();const f=v=>{$("#dlg").hidden=true;$("#dy").onclick=$("#dn").onclick=null;r(v)};$("#dy").onclick=()=>f(true);$("#dn").onclick=()=>f(false)})}
+
+function stats(){
+ const c={all:items.length,on:items.filter(x=>x.a).length,off:items.filter(x=>!x.a).length,np:items.filter(x=>!x.p).length,nf:items.filter(noPhoto).length};
+ const S=[["all","Platos",c.all],["on","Disponibles",c.on],["off","Agotados",c.off],["np","Sin precio",c.np],["nf","Sin foto",c.nf]];
+ $("#stats").innerHTML=S.map(([k,l,n])=>`<button class="stat nu ${st==k?"on":""} ${(k=="np"||k=="nf"||k=="off")&&n?"warn":""}" data-s="${k}"><b>${n}</b><span>${l}</span></button>`).join("");
+ const n=changes();$("#save").classList.toggle("show",n>0);$("#sn").textContent=`${n} ${n==1?"cambio":"cambios"} sin guardar`}
+function cats(){$("#cats").innerHTML=["all",...CATS].map(c=>`<button class="chip" aria-pressed="${cat==c}" data-c="${c}">${c=="all"?"Todas":c}</button>`).join("")}
+const card=x=>`<article class="it nu ${x.a?"":"off"}" data-id="${x.id}">
+ <div class="th"><span class="ltr">${esc((x.n||"?")[0])}</span><img src="${esc(x.i||"img/"+slug(x.n)+".jpg")}" alt="" onerror="this.remove()">
+  <button class="sw" data-a role="switch" aria-checked="${x.a}" aria-label="Disponible"><i></i><b>${x.a?"Disponible":"Agotado"}</b></button>
+  <label class="ph">📷 ${x.i?"Cambiar":"Subir"} foto<input type="file" accept="image/*" hidden data-f></label>
+  ${x.i?'<button class="rm" data-rf aria-label="Quitar foto">✕</button>':""}</div>
+ <div class="bd"><input class="nm" data-k="n" value="${esc(x.n)}" placeholder="Nombre del plato" aria-label="Nombre">
+  <div class="r2"><select data-k="c" aria-label="Categoría">${CATS.map(c=>`<option ${c==x.c?"selected":""}>${c}</option>`).join("")}</select>
+  <div class="pr"><span>$</span><input data-k="p" type="number" min="0" step="0.5" inputmode="decimal" value="${x.p||""}" placeholder="0.00" aria-label="Precio"></div></div>
+  <textarea data-k="d" placeholder="Descripción" aria-label="Descripción">${esc(x.d)}</textarea>
+  <div class="ft"><button data-dup>⧉ Duplicar</button><button class="dg" data-del>Eliminar</button></div></div></article>`;
+function visible(){return items.filter(x=>(cat=="all"||x.c==cat)&&(!q||norm(x.n+" "+x.d).includes(norm(q)))&&(st=="all"||(st=="on"&&x.a)||(st=="off"&&!x.a)||(st=="np"&&!x.p)||(st=="nf"&&noPhoto(x))))}
+function render(){const v=visible();$("#items").innerHTML=v.length?v.map(card).join(""):'<p class="empty">No hay platos con ese filtro.</p>';stats();cats()}
+const find=e=>{const a=e.target.closest(".it");return a&&items.find(x=>x.id==a.dataset.id)};
+const redraw=x=>{const a=$(`.it[data-id="${x.id}"]`);if(a)a.outerHTML=card(x);stats()};
+
+$("#items").addEventListener("input",e=>{const x=find(e),k=e.target.dataset.k;if(!x||!k)return;x[k]=k=="p"?Math.max(0,+e.target.value||0):e.target.value;if(k=="n")probe(x);stats()});
+$("#items").addEventListener("change",e=>{const x=find(e);if(!x)return;
+ if(e.target.dataset.k=="c"){x.c=e.target.value;stats()}
+ const f=e.target.files&&e.target.files[0];if(f&&e.target.hasAttribute("data-f")){const img=new Image();img.onload=()=>{const k=Math.min(1,1000/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=img.width*k;c.height=img.height*k;c.getContext("2d").drawImage(img,0,0,c.width,c.height);x.i=c.toDataURL("image/jpeg",.82);redraw(x);toast("Foto cargada")};img.src=URL.createObjectURL(f)}});
+$("#items").addEventListener("click",async e=>{const x=find(e);if(!x)return;
+ if(e.target.closest("[data-a]")){x.a=!x.a;redraw(x)}
+ if(e.target.closest("[data-rf]")){x.i="";redraw(x)}
+ if(e.target.closest("[data-dup]")){const n={...x,id:++uid,n:x.n+" (copia)"};items.splice(items.indexOf(x)+1,0,n);render();$(`.it[data-id="${n.id}"] .nm`).select()}
+ if(e.target.closest("[data-del]")&&await ask(`¿Eliminar «${x.n||"este plato"}»?`,"Eliminar")){items.splice(items.indexOf(x),1);render()}});
+$("#stats").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(b){st=st==b.dataset.s?"all":b.dataset.s;render()}});
+$("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;render()}});
+$("#q").addEventListener("input",e=>{q=e.target.value;render()});
+$("#add").onclick=()=>{const x={id:++uid,c:cat=="all"?CATS[0]:cat,n:"",p:0,d:"",i:"",a:true};items.unshift(x);q="";$("#q").value="";st="all";render();const n=$(`.it[data-id="${x.id}"] .nm`);n.scrollIntoView({block:"center",behavior:"smooth"});n.focus()};
+
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(clean()));localStorage.setItem(SKEY,JSON.stringify(site));mark();siteBase=secSig();stats();return true}catch(e){toast("Sin espacio: usa fotos más livianas o rutas img/…");return false}}
+$("#sv").onclick=()=>{if(persist())toast("Guardado ✓ El sitio ya muestra los cambios")};
+$("#disc").onclick=async()=>{if(await ask("¿Descartar los cambios sin guardar?","Descartar")){load();render();renderPanels()}};
+addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key=="s"&&!$("#app").hidden){e.preventDefault();$("#sv").click()}});
+addEventListener("beforeunload",e=>{if(!$("#app").hidden&&changes()){e.preventDefault();e.returnValue=""}});
+
+const dl=(name,txt,type)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+const closeMore=()=>document.querySelector("details.more").open=false;
+$("#pub").onclick=()=>{closeMore();dl("menu-data.js",`window.MENU_KEY=${JSON.stringify(KEY)};\nwindow.MENU_CATS=${JSON.stringify(CATS)};\nwindow.MENU_SAMPLE=${JSON.stringify(clean(),null,1)};\nwindow.SITE_KEY=${JSON.stringify(SKEY)};\nwindow.SITE_SAMPLE=${JSON.stringify(site,null,1)};\n`,"text/javascript");toast("Reemplaza menu-data.js en el repositorio para publicar")};
+$("#exp").onclick=()=>{closeMore();dl("menu-1529.json",JSON.stringify(clean(),null,1),"application/json")};
+$("#imp").onclick=()=>{closeMore();$("#impf").click()};
+$("#impf").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const a=JSON.parse(await f.text());if(!Array.isArray(a)||!a.every(x=>x&&x.n))throw 0;if(await ask(`¿Reemplazar el menú actual por ${a.length} platos importados?`,"Importar")){items=a.map(x=>({id:++uid,c:CATS.includes(x.c)?x.c:CATS[0],n:x.n,p:+x.p||0,d:x.d||"",i:x.i||"",a:x.a!==false}));items.forEach(probe);render()}}catch(_){toast("Archivo no válido")}e.target.value=""};
+$("#allon").onclick=()=>{closeMore();items.forEach(x=>x.a=true);render()};
+$("#rst").onclick=async()=>{closeMore();if(await ask("¿Volver al menú original? Se pierden los cambios guardados.","Restaurar")){try{localStorage.removeItem(KEY)}catch(_){}load();render();renderPanels();toast("Menú original restaurado")}};
+
+/* ===== contenido del sitio: eventos, momentos, preguntas, instagram ===== */
+const SKEY=window.SITE_KEY||"m1529site1";
+let site=null,siteBase={};
+const secSig=()=>({events:JSON.stringify(site.events),moments:JSON.stringify(site.moments),faq:JSON.stringify(site.faq),feed:JSON.stringify(site.feed)});
+function loadSite(){let v;try{v=JSON.parse(localStorage.getItem(SKEY))}catch(e){}
+ site=Object.assign(JSON.parse(JSON.stringify(window.SITE_SAMPLE)),v||{});site.feed=Object.assign({mode:"manual",max:9,source:"",posts:[]},site.feed);siteBase=secSig()}
+const siteChanges=()=>{const c=secSig();return Object.keys(c).filter(k=>c[k]!==siteBase[k]).length};
+const L={
+ "events.texts":{get:()=>site.events.texts,f:[["tag","Etiqueta","t"],["title","Título","t"],["body","Texto (usa **negrita**)","a"]],blank:()=>({tag:"Próximamente",title:"",body:""})},
+ "events.videos":{get:()=>site.events.videos,f:[["src","Video (ruta, ej. img/evento.mp4)","v"],["title","Título","t"],["sub","Subtítulo","t"]],blank:()=>({src:"",title:"",sub:""})},
+ moments:{get:()=>site.moments,f:[["src","Foto o video (ruta, ej. img/foto.jpg)","m"],["title","Título","t"],["sub","Subtítulo","t"]],blank:()=>({src:"",title:"",sub:""})},
+ faq:{get:()=>site.faq,f:[["q","Pregunta","t"],["a","Respuesta","a"]],blank:()=>({q:"",a:""})},
+ "feed.posts":{get:()=>site.feed.posts,f:[["u","Enlace de Instagram","t"],["date","Fecha","t"],["title","Título","t"],["body","Descripción","a"]],blank:()=>({u:"",date:"",title:"",body:""})}
+};
+const isV=s=>/\.(mp4|webm|mov|m4v)(\?|$)/i.test(s||"");
+const fld=(x,[k,lab,t])=>{const v=esc(x[k]||"");
+ if(t=="a")return `<div class="f full"><span class="lb">${lab}</span><textarea data-k="${k}" rows="2" aria-label="${lab}">${v}</textarea></div>`;
+ if(t=="v"||t=="m")return `<div class="f full"><span class="lb">${lab}</span><div class="pick"><input data-k="${k}" value="${v}" aria-label="${lab}" placeholder="img/archivo.${t=="v"?"mp4":"jpg"}"><label class="btn pk">Elegir<input type="file" hidden data-pick accept="${t=="v"?"video/*":"image/*,video/*"}"></label></div></div>`;
+ return `<div class="f"><span class="lb">${lab}</span><input data-k="${k}" value="${v}" aria-label="${lab}"></div>`};
+const pv=x=>!x.src?"":isV(x.src)?'<span class="pv">▶</span>':`<img class="pv" src="${esc(x.src)}" alt="" onerror="this.remove()">`;
+const rowHTML=(key,x,i,n)=>`<article class="rowc nu" data-l="${key}" data-i="${i}"><div class="rh"><span class="num">${i+1}</span>${L[key].f[0][0]=="src"?pv(x):""}<span class="sp"></span><div class="mv"><button data-mv="-1" ${i?"":"disabled"} aria-label="Subir">↑</button><button data-mv="1" ${i<n-1?"":"disabled"} aria-label="Bajar">↓</button><button class="dg" data-rm aria-label="Eliminar">✕</button></div></div><div class="fg">${L[key].f.map(f=>fld(x,f)).join("")}</div></article>`;
+const rowsHTML=key=>{const a=L[key].get();return a.map((x,i)=>rowHTML(key,x,i,a.length)).join("")||'<p class="empty">Aún no hay elementos.</p>'};
+const listHTML=(key,lab)=>`<div class="rows" data-lk="${key}">${rowsHTML(key)}</div><button class="btn add" data-add="${key}">+ ${lab}</button>`;
+const rerender=key=>{const e=document.querySelector(`[data-lk="${key}"]`);if(e)e.innerHTML=rowsHTML(key)};
+let fprev=[],fstat="";
+function renderFeed(){const F=site.feed,auto=F.mode=="auto";
+ $("#p-feed").innerHTML=`<div class="rowc nu fs"><div class="seg" role="group" aria-label="Modo"><button data-fm="manual" aria-pressed="${!auto}">Manual con rotación</button><button data-fm="auto" aria-pressed="${auto}">Automático</button></div>
+ <label class="rng"><span>Publicaciones visibles</span><input type="range" min="3" max="12" value="${F.max}" data-fmax aria-label="Cantidad"><b>${F.max}</b></label>
+ ${auto?`<p class="hint">El sitio revisa Instagram al abrirse (cada 20 min). Si hay una publicación nueva entra sola y sale la más antigua.</p>
+ <div class="f"><span class="lb">URL del feed (ej. Behold) o token de Instagram</span><input data-fsrc value="${esc(F.source)}" placeholder="https://feeds.behold.so/…" aria-label="Fuente"></div>
+ <div class="fa"><button class="btn sun" data-ftest>Probar y actualizar ahora</button><span class="hint" id="fstat">${esc(fstat)}</span></div>
+ ${fprev.length?`<div class="fprev">${fprev.map(p=>`<div><b>${esc(p.date)}</b>${esc(p.title)}</div>`).join("")}</div>`:""}`
+ :`<p class="hint">Pega el enlace de la publicación nueva: entra primero y la más antigua sale sola.</p>
+ <div class="addf"><input id="nu" placeholder="https://www.instagram.com/p/…" aria-label="Enlace"><input id="nt" placeholder="Título" aria-label="Título"><textarea id="nb" rows="2" placeholder="Descripción corta" aria-label="Descripción"></textarea><button class="btn sun" data-fadd>Agregar y rotar</button></div>`}</div>
+ <h2 class="sub">${auto?"Respaldo manual (si Instagram no responde)":"Publicaciones"}</h2>${listHTML("feed.posts","Fila vacía")}`}
+function renderPanels(){
+ $("#p-events").innerHTML=`<h2 class="sub">Anuncios</h2>${listHTML("events.texts","Nuevo anuncio")}<h2 class="sub">Videos de eventos</h2><p class="hint">Copia el video a la carpeta <code>img/</code> del sitio y escribe su ruta (o usa «Elegir»).</p>${listHTML("events.videos","Nuevo video")}`;
+ $("#p-moments").innerHTML=`<h2 class="sub">Momentos</h2><p class="hint">Fotos y videos de la galería. Se reconoce solo si es foto o video por la extensión.</p>${listHTML("moments","Nuevo momento")}`;
+ $("#p-faq").innerHTML=`<h2 class="sub">Preguntas frecuentes</h2>${listHTML("faq","Nueva pregunta")}`;
+ renderFeed()}
+function addPost(){const u=$("#nu").value.trim(),t=$("#nt").value.trim();
+ if(!IG.parse(u))return toast("Pega un enlace válido de Instagram");if(!t)return toast("Escribe un título");
+ const F=site.feed;F.posts.unshift({u,date:IG.short(Date.now()),title:t,body:$("#nb").value.trim()});let out="";while(F.posts.length>F.max)out=F.posts.pop().title;
+ renderFeed();stats();toast(out?`Agregada · salió la más antigua: ${out}`:"Publicación agregada")}
+async function testFeed(b){const F=site.feed;b.disabled=true;$("#fstat").textContent="Conectando…";
+ try{const n=await IG.fetch(F.source,F.max);fprev=n;fstat=`Conexión correcta · ${n.length} publicaciones · ${new Date().toLocaleTimeString("es",{hour:"numeric",minute:"2-digit",hour12:true})}`;
+  try{localStorage.setItem("m1529feedcache",JSON.stringify({src:F.source,t:Date.now(),posts:n}))}catch(_){}}
+ catch(err){fprev=[];fstat="No se pudo conectar: "+err.message}
+ renderFeed()}
+const rowOf=e=>{const r=e.target.closest(".rowc[data-l]");return r?{key:r.dataset.l,i:+r.dataset.i,el:r}:null};
+const PN=$("#panels");
+PN.addEventListener("input",e=>{const r=rowOf(e),d=e.target.dataset;
+ if(r&&d.k){L[r.key].get()[r.i][d.k]=e.target.value;stats();return}
+ if(d.fsrc!==undefined){site.feed.source=e.target.value;stats()}
+ if(d.fmax!==undefined){site.feed.max=+e.target.value;e.target.nextElementSibling.textContent=e.target.value;stats()}});
+PN.addEventListener("change",e=>{const r=rowOf(e);if(!r)return;const a=L[r.key].get();
+ if(e.target.hasAttribute("data-pick")){const f=e.target.files[0];if(!f)return;a[r.i].src="img/"+f.name;rerender(r.key);stats();toast(`Copia «${f.name}» a la carpeta img/ del sitio`);return}
+ if(e.target.dataset.k=="src"){const h=r.el.querySelector(".rh"),o=h.querySelector(".pv");if(o)o.remove();h.querySelector(".num").insertAdjacentHTML("afterend",pv(a[r.i]))}});
+PN.addEventListener("click",async e=>{const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+ if(d.fm){site.feed.mode=d.fm;renderFeed();stats();return}
+ if(d.fadd!==undefined)return addPost();
+ if(d.ftest!==undefined)return testFeed(b);
+ if(d.add){const a=L[d.add].get();a.push(L[d.add].blank());rerender(d.add);stats();const ins=document.querySelectorAll(`[data-lk="${d.add}"] .rowc:last-child input`);if(ins.length)ins[0].focus();return}
+ const r=rowOf(e);if(!r)return;const a=L[r.key].get();
+ if(d.mv){const j=r.i+ +d.mv;if(j<0||j>=a.length)return;[a[r.i],a[j]]=[a[j],a[r.i]];rerender(r.key);stats()}
+ if(b.hasAttribute("data-rm")&&await ask("¿Eliminar este elemento?","Eliminar")){a.splice(r.i,1);rerender(r.key);stats()}});
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-pressed",x==b));["menu","events","moments","faq","feed"].forEach(k=>$("#p-"+k).hidden=k!=b.dataset.t)});
+
+/* acceso */
+function enter(){$("#login").hidden=true;$("#app").hidden=false;load();render();renderPanels()}
+$("#lf").onsubmit=e=>{e.preventDefault();if($("#pin").value===PIN){try{sessionStorage.setItem("a1529","1")}catch(_){}enter()}else{$("#err").textContent="PIN incorrecto";$("#lf").classList.remove("shake");void $("#lf").offsetWidth;$("#lf").classList.add("shake");$("#pin").value="";$("#pin").focus()}};
+$("#out").onclick=()=>{try{sessionStorage.removeItem("a1529")}catch(_){}location.reload()};
+try{if(sessionStorage.getItem("a1529")==="1")enter()}catch(_){}
+</script>
+</body>
+</html>

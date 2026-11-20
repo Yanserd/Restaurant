@@ -6,6 +6,7 @@
 <title>Mil Quinientos Veintinueve · 1529 Restaurant · Maracaibo</title>
 <meta name="description" content="Gastronomía, bar y terraza en el C.C. Premier, Maracaibo. Menú digital y reservas.">
 <meta name="theme-color" content="#17301f">
+<link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -23,8 +24,14 @@
   --r:22px;--r-sm:14px;
   --nu-d:#d8ccb7;--nu-l:#fffbf2;
   --shadow-lg:0 24px 60px rgba(27,26,23,.14);
-  --transition:cubic-bezier(.2,.8,.2,1);
-}
+  --transition:cubic-bezier(.2,.8,.2,1);}
+.dark{--cream:#12291b;--ink:#f4ead8;--muted:#b4c2b3;--nu-d:#09160d;--nu-l:#1e4030;color:var(--ink);color-scheme:dark}
+section.dark{background:linear-gradient(180deg,#17301f,#0f2218)}
+.dark .tabs,.dark .momentos-tabs{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+.dark .badge{background:rgba(91,224,138,.16);color:#7be3a0}
+.dark .dish.off .badge{background:rgba(226,85,43,.2);color:#ff9f85}
+.dark .nu-in::placeholder{color:rgba(244,234,216,.4)}
+.dark select.nu-in option{background:#12291b;color:#f4ead8}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font:400 1rem/1.65 var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -35,7 +42,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{width:min(1160px,100% - 2.5rem);margin-inline:auto}
 h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.15;letter-spacing:0.01em}
 h2{font-size:clamp(2.3rem,5vw,3.6rem);margin-bottom:1.1rem}
-section{padding:clamp(5rem,8vw,7.5rem) 0}
+section{padding:clamp(2.6rem,4.5vw,3.6rem) 0}
+section:not(.dark):not(.loc)+section:not(.dark):not(.loc){padding-top:0}
 .lead{max-width:58ch;color:var(--muted);line-height:1.75;font-size:1.02rem}
 
 /* ---- Utility surfaces ---- */
@@ -60,7 +68,7 @@ section{padding:clamp(5rem,8vw,7.5rem) 0}
 /* ---- Buttons ---- */
 .btn{
   display:inline-flex;align-items:center;gap:.5rem;border:0;cursor:pointer;
-  border-radius:999px;padding:.9rem 1.6rem;font-weight:700;font-size:.95rem;
+  justify-content:center;border-radius:999px;padding:.9rem 1.6rem;font-weight:700;font-size:.95rem;
   transition:transform .25s var(--transition),box-shadow .25s;
   white-space:nowrap
 }
@@ -69,8 +77,8 @@ section{padding:clamp(5rem,8vw,7.5rem) 0}
 .btn-sun:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(200,85,61,.55)}
 .btn-glass{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(10px)}
 .btn-glass:hover{background:rgba(255,255,255,.2)}
-.hero .btn-glass{background:rgba(255,255,255,.55);color:var(--ink);border-color:rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(60,40,10,.12)}
-nav .glass,.status.glass{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.85);box-shadow:0 10px 30px rgba(60,40,10,.12),inset 0 1px 0 #fff}
+.hero .btn-glass{background:rgba(255,255,255,.1);color:var(--ink);border-color:rgba(255,255,255,.3)}
+nav .glass{background:rgba(13,32,22,.9);border-color:rgba(255,255,255,.14);box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
 .btn-nu{background:var(--cream);box-shadow:6px 6px 14px var(--nu-d),-6px -6px 14px var(--nu-l)}
 .btn-nu:hover{box-shadow:3px 3px 8px var(--nu-d),-3px -3px 8px var(--nu-l)}
 
@@ -79,8 +87,9 @@ nav .glass,.status.glass{background:rgba(255,255,255,.55);border-color:rgba(255,
 ============================================================ */
 nav{position:fixed;inset:0 0 auto;z-index:50;padding:.8rem 0;padding-top:calc(.8rem + env(safe-area-inset-top,0px))}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem;border-radius:999px}
-.logo{display:inline-flex;align-items:center;gap:.65rem;font-family:var(--serif);font-size:1.5rem;color:var(--lake);letter-spacing:.02em}
-.logo img{width:32px;height:32px;border-radius:50%;box-shadow:0 4px 10px rgba(23,48,31,.25);flex-shrink:0}
+.logo{display:inline-flex;align-items:center;gap:.65rem;font-family:var(--serif);color:var(--ink)}
+.logo img{width:42px;height:42px;flex-shrink:0}
+.logo span{font:700 .85rem var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--sun)}
 .logo b{color:var(--sun);font-weight:600}
 .links{display:flex;gap:1.6rem;align-items:center;color:var(--ink);font-size:.9rem;font-weight:500}
 .links a{transition:color .2s}
@@ -91,12 +100,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
   .links{
     display:none;position:absolute;top:calc(100% + .6rem);left:.8rem;right:.8rem;
     flex-direction:column;padding:1.4rem;border-radius:var(--r);
-    background:rgba(255,252,246,.95);backdrop-filter:blur(20px);
+    background:rgba(13,32,22,.97);backdrop-filter:blur(20px);
     box-shadow:0 20px 50px rgba(27,26,23,.18);gap:.5rem
   }
   .links.open{display:flex}
   .burger{display:block}
-  .links a{font-size:1.05rem;padding:.5rem 0;border-bottom:1px solid rgba(27,26,23,.07);width:100%;text-align:center}
+  .links a{font-size:1.05rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.09);width:100%;text-align:center}
   .links a:last-child{border-bottom:0}
 }
 
@@ -104,16 +113,16 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
    HERO
 ============================================================ */
 .hero{
-  min-height:100svh;display:grid;align-items:center;color:var(--ink);
-  position:relative;overflow:hidden;padding:7rem 0 4rem;
+  min-height:min(100svh,780px);display:flex;flex-direction:column;justify-content:center;color:var(--ink);
+  position:relative;overflow:hidden;padding:7rem 0 3rem;
   background:
-    radial-gradient(900px 600px at 80% 32%,rgba(242,163,58,.4),transparent 62%),
-    radial-gradient(600px 400px at 8% 95%,rgba(200,85,61,.15),transparent 60%),
-    linear-gradient(180deg,#fcf7ee,var(--cream))
+    radial-gradient(900px 600px at 80% 32%,rgba(233,162,59,.26),transparent 62%),
+    radial-gradient(600px 400px at 8% 95%,rgba(226,85,43,.12),transparent 60%),
+    linear-gradient(180deg,#1b3d29,#0f2218)
 }
 @keyframes rise{from{transform:translateY(40%);opacity:0}}
 .hero h1{font-size:clamp(3rem,10vw,8rem);max-width:12ch;font-weight:300}
-.plate{position:absolute;right:-3vmin;top:14vh;width:min(60vmin,520px);aspect-ratio:1;filter:drop-shadow(0 30px 40px rgba(23,48,31,.28));animation:rise 2s var(--transition) both}
+.plate{position:absolute;right:clamp(1rem,7vw,7rem);top:14vh;width:min(54vmin,470px);aspect-ratio:1;filter:drop-shadow(0 30px 40px rgba(23,48,31,.28));animation:rise 2s var(--transition) both}
 .plate svg{width:100%;height:100%;overflow:visible}
 .rays{transform-origin:200px 200px;animation:spin 70s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -121,36 +130,43 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 .hero.photo .plate{display:none}
 .hero.photo .btn-glass{color:#fff;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5)}
 .hero.photo h1 em{color:var(--sun)}
-.logo img{height:36px;display:block}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero.vid::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,14,.55),rgba(10,22,14,.88))}
-.vcard{z-index:2}
-.vcard{position:absolute;right:clamp(1rem,4vw,3rem);bottom:calc(clamp(1rem,4vw,3rem) + 4.6rem);padding:1rem 1.3rem;display:flex;gap:1rem;align-items:center;cursor:pointer;color:inherit;text-align:left}
-.vcard b{font-family:var(--serif);font-size:2.2rem;font-weight:300;line-height:1}
-.vcard span{font-size:.85rem;max-width:11ch;line-height:1.3}
-.vcard i{font-style:normal;width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--sun),var(--ember));color:#fff;box-shadow:0 8px 20px rgba(226,85,43,.5);transition:transform .25s}
-.vcard:hover i{transform:scale(1.12)}
-@media(max-width:820px){.vcard{display:none}}
-.status{position:absolute;right:clamp(1rem,4vw,3rem);bottom:clamp(1rem,4vw,3rem);padding:1rem 1.4rem;font-size:.9rem;display:flex;gap:.7rem;align-items:center;z-index:2}
-.dot{width:.7rem;height:.7rem;border-radius:50%;background:#8a8a8a}
-.dot.on{background:#5be08a;box-shadow:0 0 12px #5be08a}
-.hero .wrap{position:relative;z-index:1}
-.hero h1 em{font-style:italic;color:var(--ember)}
-.hero p.tag{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:34ch;margin:1.4rem 0 2rem;opacity:.9}
-.hero .acts{display:flex;gap:.9rem;flex-wrap:wrap}
 
+.hero-content{position:relative;z-index:2}
+.hero-bottom-row{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;margin-top:2.2rem;width:100%}
+.hero-bottom-row .acts{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
+.hero .acts .btn,.vcard{height:58px}
+.hero .acts .btn{padding:0 1.7rem}
+.vcard{position:static;z-index:2;padding:0 .8rem 0 1.3rem;display:flex;gap:.9rem;align-items:center;cursor:pointer;color:var(--ink);text-align:left;border-radius:999px;background:rgba(13,32,22,.55);border:1px solid rgba(255,255,255,.2);box-shadow:0 12px 30px rgba(0,0,0,.28);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.vcard b{font-family:var(--serif);font-size:1.7rem;font-weight:400;line-height:1;color:var(--sun)}
+.vc-txt{display:flex;flex-direction:column;gap:.15rem;line-height:1.2}
+.vc-status{display:flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.vc-txt strong{font-size:.86rem;font-weight:600}
+.vcard .play{width:2.5rem;height:2.5rem;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--sun),var(--ember));color:#fff;box-shadow:0 8px 20px rgba(226,85,43,.5);transition:transform .25s;flex-shrink:0;font-size:.85rem}
+.vcard:hover .play{transform:scale(1.1)}
+.dot{width:.6rem;height:.6rem;border-radius:50%;background:#8a8a8a;flex-shrink:0}
+.dot.on{background:#5be08a;box-shadow:0 0 10px #5be08a}
+.hero h1 em{font-style:italic;color:var(--ember)}
+.hero p.tag{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:34ch;margin:1.4rem 0 0;opacity:.9}
+
+@media(max-width:820px){
+  .hero-bottom-row{flex-direction:column;align-items:stretch;gap:1rem}
+  .vc-txt{flex:1}
+  .plate{display:none}
+}
 @media(max-width:600px){
-  .hero{padding:5.5rem 0 7rem}
+  .hero{padding:5.5rem 0 5rem}
   .hero h1{font-size:clamp(2.6rem,14vw,5rem)}
   .hero p.tag{font-size:1rem;max-width:28ch}
-  .hero .acts{flex-direction:column;align-items:flex-start}
-  .status{right:.8rem;bottom:.8rem;font-size:.8rem;padding:.7rem 1rem}
+  .hero-bottom-row .acts{flex-direction:column;align-items:stretch;width:100%}
+  .hero-bottom-row .acts .btn{width:100%;justify-content:center}
 }
 
 /* ============================================================
    MARQUEE
 ============================================================ */
-.mq{overflow:hidden;background:var(--lake);color:var(--cream);padding:.9rem 0;white-space:nowrap;font-family:var(--serif);font-size:1.3rem;font-style:italic}
+.mq{overflow:hidden;background:#0b1a11;border-block:1px solid rgba(233,162,59,.2);color:#f4ead8;padding:.9rem 0;white-space:nowrap;font-family:var(--serif);font-size:1.3rem;font-style:italic}
 .mq div{display:inline-block;animation:mq 34s linear infinite}
 @keyframes mq{to{transform:translateX(-50%)}}
 
@@ -162,9 +178,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
   font-family:var(--serif);font-size:clamp(6rem,18vw,13rem);line-height:.9;font-weight:300;
   background:linear-gradient(135deg,var(--sun),var(--ember));
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  text-align:center;padding:2rem 1rem
+  text-align:center;padding:1rem
 }
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
 .pillars div{padding:1.6rem}
 .pillars h3{font-size:1.5rem;margin-bottom:.4rem}
 .pillars p{color:var(--muted);font-size:.95rem}
@@ -175,7 +191,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
    MENU
 ============================================================ */
 .tabs{
-  display:inline-flex;gap:.35rem;margin:2rem 0;padding:.35rem;
+  display:inline-flex;gap:.35rem;margin:1.4rem 0 1.6rem;padding:.35rem;
   background:rgba(23,48,31,.06);border-radius:999px;
   border:1px solid rgba(23,48,31,.1);
   overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%
@@ -187,8 +203,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 }
 .tab:hover{color:var(--ink)}
 .tab[aria-selected=true]{
-  background:var(--lake);color:#fff;
-  box-shadow:0 4px 14px rgba(23,48,31,.25);font-weight:700
+  background:linear-gradient(135deg,var(--sun),var(--ember));color:#fff;
+  box-shadow:0 4px 14px rgba(226,85,43,.35);font-weight:700
 }
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.6rem}
 .dish{padding:0 0 1.4rem;overflow:hidden;transition:transform .3s}
@@ -200,6 +216,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 .dish p{padding:.3rem 1.4rem;color:var(--muted);font-size:.92rem}
 .price{display:flex;justify-content:space-between;align-items:center;padding:.5rem 1.4rem 0;font-weight:700}
 .price span{font-family:var(--serif);font-size:1.4rem;color:var(--ember)}
+.price a.cons{font-family:var(--serif);font-size:1.4rem;color:var(--ember);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:5px;transition:text-decoration-color .2s}
+.price a.cons::after{content:" ↗";font-size:.7em}
+.price a.cons:hover{text-decoration-color:currentColor}
 .badge{font-size:.72rem;padding:.25rem .7rem;border-radius:999px;background:#dff3e5;color:#216b3a}
 .dish.off{opacity:.55}.dish.off .badge{background:#f4dcd8;color:#8d2f1f}
 .note{margin-top:2rem;font-size:.85rem;color:var(--muted)}
@@ -207,10 +226,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 /* ============================================================
    EVENTOS
 ============================================================ */
-.eventos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.4rem;margin-top:2rem}
+.event-texts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.4rem}
+.eventos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:1.2rem}
+.eventos-grid .ev-label strong{font-size:1.05rem}
 .evento-card{
   border-radius:var(--r);overflow:hidden;cursor:pointer;position:relative;
-  aspect-ratio:9/16;background:#000;
+  aspect-ratio:3/4;background:#000;
   box-shadow:9px 9px 20px var(--nu-d),-9px -9px 20px var(--nu-l);
   transition:transform .35s var(--transition)
 }
@@ -233,16 +254,14 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
   transition:transform .25s var(--transition),opacity .2s;opacity:.9
 }
 .evento-card:hover .ev-play{transform:translate(-50%,-50%) scale(1);opacity:1}
-@media(max-width:600px){
-  .eventos-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
-  .evento-card{aspect-ratio:9/16}
-}
+@media(max-width:900px){.event-texts{grid-template-columns:1fr}.eventos-grid{grid-template-columns:repeat(2,1fr)}.eventos-grid .evento-card:last-child{grid-column:1/-1;aspect-ratio:16/10}}
+@media(max-width:600px){.eventos-grid{gap:.8rem}.evento-card{aspect-ratio:3/4}.evento-card .ev-label strong{font-size:1rem}.evento-card .ev-label span{display:none}}
 
 /* ============================================================
    MOMENTOS TABS — editorial
 ============================================================ */
 .momentos-tabs{
-  display:inline-flex;gap:.35rem;margin:1.5rem 0;padding:.3rem;
+  display:inline-flex;gap:.35rem;margin:1rem 0 .4rem;padding:.3rem;
   background:rgba(23,48,31,.06);border-radius:999px;
   border:1px solid rgba(23,48,31,.1);
   overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%
@@ -254,22 +273,22 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 }
 .mtab:hover{color:var(--ink)}
 .mtab[aria-selected=true]{
-  background:var(--lake);color:#fff;
-  box-shadow:0 4px 12px rgba(23,48,31,.2);font-weight:700
+  background:linear-gradient(135deg,var(--sun),var(--ember));color:#fff;
+  box-shadow:0 4px 12px rgba(226,85,43,.35);font-weight:700
 }
 
 /* Scroll horizontal en móvil */
 .momentos-strip{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:1.2rem;margin-top:1.6rem
+  gap:1.2rem;margin-top:1.2rem
 }
 .momento-item{
   border-radius:var(--r-sm);overflow:hidden;cursor:pointer;position:relative;
   background:#1b1a17;
   box-shadow:6px 6px 16px var(--nu-d),-6px -6px 16px var(--nu-l);
   transition:transform .3s var(--transition),box-shadow .3s;
-  aspect-ratio:3/4
+  aspect-ratio:4/5
 }
 .momento-item:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(27,26,23,.18)}
 .momento-item img,.momento-item video{width:100%;height:100%;object-fit:cover;pointer-events:none}
@@ -343,7 +362,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 /* ============================================================
    INSTAGRAM FEED
 ============================================================ */
-.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem;margin-top:2rem}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.4rem}
+@media(max-width:900px){.feed{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.feed{grid-template-columns:1fr}}
 .card{padding:1.5rem;display:block;transition:transform .3s}
 .card:hover{transform:translateY(-6px)}
 .card small{color:var(--ember);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
@@ -354,12 +375,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
    UBICACIÓN / HORARIO
 ============================================================ */
 .loc{
-  background:linear-gradient(170deg,#102216 0%,#17301f 60%,#102216 100%);
+  background:linear-gradient(160deg,var(--lake),var(--lake2));
   color:#fff;position:relative;overflow:hidden;
-  padding:clamp(6.5rem, 10vw, 9rem) 0;
-  box-shadow:inset 0 24px 48px -12px rgba(0,0,0,.45), inset 0 -24px 48px -12px rgba(0,0,0,.45);
-  border-top:1px solid rgba(233,162,59,.2);
-  border-bottom:1px solid rgba(233,162,59,.2)
+  padding:clamp(2.6rem,4.5vw,3.6rem) 0;
 }
 .loc::before{content:"";position:absolute;width:60vmin;aspect-ratio:1;border-radius:50%;left:-15vmin;bottom:-25vmin;background:radial-gradient(circle,rgba(242,163,58,.4),transparent 65%)}
 .loc .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;position:relative}
@@ -378,13 +396,14 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 .res{padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem;align-items:start}
 .res form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .res form .full{grid-column:1/-1}
+.nu-in::placeholder{color:rgba(27,26,23,.4)}
 label{font-size:.82rem;font-weight:700;display:block;margin-bottom:.35rem}
 @media(max-width:820px){.res{grid-template-columns:1fr}.res form{grid-template-columns:1fr}}
 
 /* ============================================================
    FAQs
 ============================================================ */
-.faq details{padding:1.1rem 1.4rem;margin-bottom:1rem}
+.faq details{padding:1.1rem 1.4rem;margin-bottom:.8rem}
 .faq summary{cursor:pointer;font:400 1.25rem var(--serif);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
 .faq summary::after{content:"＋";font-size:1rem;opacity:.5;transition:.2s;flex-shrink:0}
 .faq details[open] summary::after{content:"－"}
@@ -393,10 +412,10 @@ label{font-size:.82rem;font-weight:700;display:block;margin-bottom:.35rem}
 /* ============================================================
    FOOTER
 ============================================================ */
-footer{background:var(--lake);color:#fff;padding:3rem 0 calc(3rem + env(safe-area-inset-bottom,0px));text-align:center}
-footer .logo{font-size:2rem}
+footer{background:#0b1a11;border-top:1px solid rgba(233,162,59,.18);color:#fff;padding:2.2rem 0 calc(2.2rem + env(safe-area-inset-bottom,0px));text-align:center}
+footer .logo img{width:56px;height:56px}
 footer p{opacity:.7;font-size:.9rem;margin-top:.5rem}
-.admin-link{background:none;border:0;color:rgba(255,255,255,.45);cursor:pointer;margin-top:1.2rem;font-size:.8rem}
+.admin-link{display:inline-block;background:none;border:0;color:rgba(255,255,255,.45);cursor:pointer;margin-top:1.2rem;font-size:.8rem}
 footer .social-links{display:flex;justify-content:center;gap:1.2rem;margin:1rem 0}
 footer .social-links a{opacity:.75;transition:opacity .2s}
 footer .social-links a:hover{opacity:1}
@@ -420,7 +439,7 @@ footer .social-links a:hover{opacity:1}
   position:fixed;left:1.1rem;bottom:calc(1.1rem + env(safe-area-inset-bottom,0px));
   z-index:60;display:inline-flex;align-items:center;gap:.65rem;
   padding:.65rem 1.15rem;border-radius:999px;border:0;cursor:pointer;
-  background:rgba(23,48,31,.94);color:var(--cream);
+  background:rgba(23,48,31,.94);color:#f4ead8;
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border:1px solid rgba(233,162,59,.45);
   box-shadow:0 10px 28px rgba(23,48,31,.35);
@@ -436,7 +455,7 @@ footer .social-links a:hover{opacity:1}
 .music-bar:nth-child(3){animation-delay:.15s;animation-duration:.9s}
 .music-bar:nth-child(4){animation-delay:.45s;animation-duration:1.2s}
 @keyframes barWave{0%{height:25%}100%{height:100%}}
-.music-toggle.paused{background:rgba(255,252,246,.94);color:var(--muted);border-color:rgba(27,26,23,.15);box-shadow:0 8px 22px rgba(27,26,23,.12)}
+.music-toggle.paused{background:rgba(255,252,246,.94);color:#6d655a;border-color:rgba(27,26,23,.15);box-shadow:0 8px 22px rgba(27,26,23,.12)}
 .music-toggle.paused .music-bar{animation:none;height:3px;background:var(--muted);opacity:.5}
 @media(max-width:550px){
   .music-toggle{padding:.6rem .85rem;font-size:.78rem}
@@ -493,53 +512,20 @@ footer .social-links a:hover{opacity:1}
 @media(max-width:820px){.hero-socials{display:none}}
 
 /* ============================================================
-   EVENTOS — sección oscura atmosférica
+   EVENTOS
 ============================================================ */
-.eventos-dark{
-  background:linear-gradient(180deg,#102216 0%,#17301f 15%,#17301f 85%,#102216 100%);
-  color:#fff;position:relative;overflow:hidden;
-  padding:clamp(6.5rem, 10vw, 9rem) 0;
-  box-shadow:inset 0 24px 48px -12px rgba(0,0,0,.45), inset 0 -24px 48px -12px rgba(0,0,0,.45);
-  border-top:1px solid rgba(233,162,59,.2);
-  border-bottom:1px solid rgba(233,162,59,.2);
-}
-.eventos-dark::before{
-  content:'';position:absolute;width:70vmin;aspect-ratio:1;border-radius:50%;
-  right:-20vmin;top:-20vmin;
-  background:radial-gradient(circle,rgba(233,162,59,.12),transparent 65%);
-  pointer-events:none
-}
-.eventos-dark::after{
-  content:'';position:absolute;width:50vmin;aspect-ratio:1;border-radius:50%;
-  left:-15vmin;bottom:-20vmin;
-  background:radial-gradient(circle,rgba(226,85,43,.08),transparent 65%);
-  pointer-events:none
-}
-.eventos-dark h2,.eventos-dark .lead{color:#fff}
-.eventos-dark .lead{opacity:.85}
-.eventos-dark .nu{
-  background:rgba(255,255,255,.06);
-  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 20px 40px rgba(0,0,0,.35);
-  border-radius:var(--r);color:#fff
-}
-.eventos-dark .nu p{opacity:.85}
-.eventos-dark .ev-label small{color:var(--sun)}
-.eventos-dark .btn-sun{box-shadow:0 10px 30px rgba(200,85,61,.5)}
-.eventos-dark .evento-card{
-  box-shadow:0 4px 24px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.07)
-}
-.eventos-dark .event-text-card{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
+.event-text-card{
+  background:var(--cream);
   border-radius:var(--r);padding:1.6rem;
-  display:flex;flex-direction:column;justify-content:space-between;min-height:260px
+  box-shadow:6px 6px 16px var(--nu-d),-6px -6px 16px var(--nu-l);
+  border:1px solid rgba(255,255,255,.06);
 }
-.eventos-dark .event-text-card small{
-  color:var(--sun);font-weight:700;text-transform:uppercase;
-  font-size:.72rem;letter-spacing:.1em
+.event-text-card small{
+  color:var(--ember);font-weight:700;text-transform:uppercase;
+  font-size:.72rem;letter-spacing:.1em;
 }
-.eventos-dark .event-text-card h3{font-size:1.5rem;margin:.5rem 0;color:#fff}
-.eventos-dark .event-text-card p{color:rgba(255,255,255,.75);font-size:.93rem}
+.event-text-card h3{font-size:1.5rem;margin:.5rem 0;color:var(--ink)}
+.event-text-card p{color:var(--muted);font-size:.93rem;}
 
 /* ============================================================
    TIPOGRAFÍA EDITORIAL — section labels & headings
@@ -554,15 +540,28 @@ h2{letter-spacing:0.01em}
 /* Mo-badge sin emoji: más limpio */
 .mo-badge{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 
-/* Separador sutil entre secciones de color */
-.sep{
-  display:flex;align-items:center;justify-content:center;gap:1.2rem;
-  padding:2rem 0;color:var(--sun);opacity:.6;font-size:.9rem
+/* ============================================================
+   RESPONSIVE — móvil
+============================================================ */
+@media(max-width:600px){
+  .tabs{display:flex;width:100%;gap:.15rem;padding:.3rem}
+  .tab{flex:1;padding:.6rem .2rem;font-size:.66rem;letter-spacing:.03em;text-align:center}
+  .grid{gap:1rem}
+  .dish{display:grid;grid-template-columns:104px 1fr;grid-template-rows:auto auto 1fr;padding:0;align-items:start}
+  .dish .ph{grid-row:1/-1;grid-column:1;aspect-ratio:auto;height:100%;min-height:136px;margin:0;font-size:2rem}
+  .dish h3,.dish p,.dish .price{grid-column:2;padding-left:1rem;padding-right:1rem}
+  .dish h3{padding-top:.9rem;font-size:1.2rem}
+  .dish .price{align-self:end;padding-bottom:.9rem;gap:.5rem;flex-wrap:wrap}
+  .price span,.price a.cons{font-size:1.15rem}
+  .rl::after{content:"▶";left:.5rem;bottom:.5rem;padding:.25rem .55rem}
+  .momento-item .mo-label span{display:none}
+  .momento-item .mo-label strong{font-size:.95rem}
+  .loc .glass{padding:1.4rem}
+  .hrs li{font-size:.92rem}
+  .event-text-card{padding:1.2rem}
+  footer .social-links{gap:1.6rem}
 }
-.sep::before,.sep::after{
-  content:'';height:1px;width:min(120px,22vw);
-  background:linear-gradient(to right,transparent,currentColor,transparent)
-}
+.card .cimg{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;margin-bottom:.8rem}
 </style>
 </head>
 <body>
@@ -570,8 +569,8 @@ h2{letter-spacing:0.01em}
 <!-- ============================================================
      NAV
 ============================================================ -->
-<nav><div class="wrap glass">
-  <a href="#inicio" class="logo"><img src="favicon.svg" alt="1529">Mil <b>1529</b></a>
+<nav class="dark"><div class="wrap glass">
+  <a href="#inicio" class="logo" aria-label="1529 Restaurant"><img src="favicon.svg" alt="1529" width="42" height="42"><span>Restaurant</span></a>
   <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
   <div class="links" id="links">
     <a href="#historia">Historia</a>
@@ -587,7 +586,7 @@ h2{letter-spacing:0.01em}
 <!-- ============================================================
      HERO
 ============================================================ -->
-<header class="hero" id="inicio">
+<header class="hero dark" id="inicio">
   <div class="plate" aria-hidden="true"><svg viewBox="0 0 400 400">
 <g class="rays" stroke="#e2552b" stroke-width="4" stroke-linecap="round" opacity=".9"><line x1="338.0" y1="200.0" x2="372.0" y2="200.0"/><line x1="336.8" y1="218.0" x2="356.6" y2="220.6"/><line x1="333.3" y1="235.7" x2="366.1" y2="244.5"/><line x1="327.5" y1="252.8" x2="346.0" y2="260.5"/><line x1="319.5" y1="269.0" x2="349.0" y2="286.0"/><line x1="309.5" y1="284.0" x2="325.3" y2="296.2"/><line x1="297.6" y1="297.6" x2="321.6" y2="321.6"/><line x1="284.0" y1="309.5" x2="296.2" y2="325.3"/><line x1="269.0" y1="319.5" x2="286.0" y2="349.0"/><line x1="252.8" y1="327.5" x2="260.5" y2="346.0"/><line x1="235.7" y1="333.3" x2="244.5" y2="366.1"/><line x1="218.0" y1="336.8" x2="220.6" y2="356.6"/><line x1="200.0" y1="338.0" x2="200.0" y2="372.0"/><line x1="182.0" y1="336.8" x2="179.4" y2="356.6"/><line x1="164.3" y1="333.3" x2="155.5" y2="366.1"/><line x1="147.2" y1="327.5" x2="139.5" y2="346.0"/><line x1="131.0" y1="319.5" x2="114.0" y2="349.0"/><line x1="116.0" y1="309.5" x2="103.8" y2="325.3"/><line x1="102.4" y1="297.6" x2="78.4" y2="321.6"/><line x1="90.5" y1="284.0" x2="74.7" y2="296.2"/><line x1="80.5" y1="269.0" x2="51.0" y2="286.0"/><line x1="72.5" y1="252.8" x2="54.0" y2="260.5"/><line x1="66.7" y1="235.7" x2="33.9" y2="244.5"/><line x1="63.2" y1="218.0" x2="43.4" y2="220.6"/><line x1="62.0" y1="200.0" x2="28.0" y2="200.0"/><line x1="63.2" y1="182.0" x2="43.4" y2="179.4"/><line x1="66.7" y1="164.3" x2="33.9" y2="155.5"/><line x1="72.5" y1="147.2" x2="54.0" y2="139.5"/><line x1="80.5" y1="131.0" x2="51.0" y2="114.0"/><line x1="90.5" y1="116.0" x2="74.7" y2="103.8"/><line x1="102.4" y1="102.4" x2="78.4" y2="78.4"/><line x1="116.0" y1="90.5" x2="103.8" y2="74.7"/><line x1="131.0" y1="80.5" x2="114.0" y2="51.0"/><line x1="147.2" y1="72.5" x2="139.5" y2="54.0"/><line x1="164.3" y1="66.7" x2="155.5" y2="33.9"/><line x1="182.0" y1="63.2" x2="179.4" y2="43.4"/><line x1="200.0" y1="62.0" x2="200.0" y2="28.0"/><line x1="218.0" y1="63.2" x2="220.6" y2="43.4"/><line x1="235.7" y1="66.7" x2="244.5" y2="33.9"/><line x1="252.8" y1="72.5" x2="260.5" y2="54.0"/><line x1="269.0" y1="80.5" x2="286.0" y2="51.0"/><line x1="284.0" y1="90.5" x2="296.2" y2="74.7"/><line x1="297.6" y1="102.4" x2="321.6" y2="78.4"/><line x1="309.5" y1="116.0" x2="325.3" y2="103.8"/><line x1="319.5" y1="131.0" x2="349.0" y2="114.0"/><line x1="327.5" y1="147.2" x2="346.0" y2="139.5"/><line x1="333.3" y1="164.3" x2="366.1" y2="155.5"/><line x1="336.8" y1="182.0" x2="356.6" y2="179.4"/></g>
 <circle cx="200" cy="200" r="122" fill="#fffaf0" stroke="#e8d8bb" stroke-width="6"/>
@@ -597,17 +596,22 @@ h2{letter-spacing:0.01em}
 <path d="M226 168c24-26 52-14 46 4-14 14-34 14-46-4z" fill="#244d35"/><path d="M229 169c14 4 28 3 38-2" stroke="#fffaf0" stroke-width="2" fill="none"/>
 <circle cx="168" cy="224" r="7" fill="#e2552b"/><circle cx="182" cy="238" r="5" fill="#e2552b"/><circle cx="154" cy="208" r="4" fill="#e2552b"/>
 </svg></div>
-  <div class="wrap">
+  <div class="wrap hero-content">
     <h1>El sol siempre <em>resurge</em></h1>
     <p class="tag">Gastronomía, bar y terraza en el corazón de Maracaibo. Sabores que honran una ciudad y su gente.</p>
-    <div class="acts">
-      <a href="#reservas" class="btn btn-sun">Reservar mesa</a>
-      <a href="#menu" class="btn btn-glass">Ver menú digital</a>
-      <button class="btn btn-glass" data-reel="DfSZMrBxOXt">Ver reels</button>
+    <div class="hero-bottom-row">
+      <div class="acts">
+        <a href="#reservas" class="btn btn-sun">Reservar mesa</a>
+        <a href="#menu" class="btn btn-glass">Ver menú digital</a>
+        <button class="btn btn-glass" data-reel="DfSZMrBxOXt">Ver reels</button>
+      </div>
+      <button class="vcard" id="vc" aria-label="Ver el video de nuestra historia">
+        <b>1529</b>
+        <span class="vc-txt"><span class="vc-status"><span class="dot" id="dot"></span><span id="stxt">Consultando horario…</span></span><strong>Nuestra historia en video</strong></span>
+        <span class="play" aria-hidden="true">▶</span>
+      </button>
     </div>
   </div>
-  <button class="vcard glass" id="vc" aria-label="Ver el video de nuestra historia"><b>1529</b><span>Nuestra historia en video</span><i>▶</i></button>
-  <div class="status glass"><span class="dot" id="dot"></span><span id="stxt">Consultando horario…</span></div>
 
   <!-- Iconos sociales flotantes (inspirado Da Vinci) -->
   <div class="hero-socials" aria-label="Nuestras redes sociales">
@@ -652,87 +656,17 @@ h2{letter-spacing:0.01em}
   <p class="note">* Precios y disponibilidad pueden variar. Consulta a tu mesero por las sugerencias del día.</p>
 </div></section>
 
-<div class="sep" aria-hidden="true"><span>✦</span></div>
-
 <!-- ============================================================
      EVENTOS — videos del restaurante
 ============================================================ -->
-<section class="eventos-dark"><div class="wrap">
-  <h2 class="rv" id="eventos">Eventos y noches en vivo</h2>
+<section id="eventos" class="dark"><div class="wrap">
+  <h2 class="rv">Eventos y noches en vivo</h2>
   <p class="lead rv">Haz clic en cada video para verlo completo.</p>
 
-  <div class="eventos-grid" id="eventos-grid">
-
-    <!-- Tarjetas de texto de eventos próximos -->
-    <div class="event-text-card rv">
-      <div>
-        <small>— Próximamente</small>
-        <h3 style="font-size:1.5rem;margin:.5rem 0">Tributo al talento zuliano</h3>
-        <p>Buena música y menú renovado. Desde las <strong>9:00 PM</strong>, entrada libre y 2×1 en mojitos clásicos.</p>
-      </div>
-      <a href="#reservas" class="btn btn-sun" style="margin-top:1.2rem;width:fit-content">Reservar</a>
-    </div>
-
-    <div class="event-text-card rv">
-      <div>
-        <small>— Próximamente</small>
-        <h3 style="font-size:1.5rem;margin:.5rem 0">Noche de Divas</h3>
-        <p>Un homenaje musical a las grandes voces de todos los tiempos. Desde las <strong>9:00 PM</strong>, con 2 margaritas por $8.</p>
-      </div>
-      <a href="#reservas" class="btn btn-sun" style="margin-top:1.2rem;width:fit-content">Reservar</a>
-    </div>
-
-    <!-- Videos de eventos únicos -->
-    <div class="evento-card rv" data-src="img/evento-aniversario.mp4" data-type="video" data-label="Primer aniversario">
-      <video src="img/evento-aniversario.mp4" muted playsinline loop></video>
-      <div class="ev-label"><strong>Primer aniversario</strong><span>Así se celebró nuestro primer año</span></div>
-      <div class="ev-play">▶</div>
-    </div>
-
-    <div class="evento-card rv" data-src="img/evento-comunion.mp4" data-type="video" data-label="Celebraciones y Comuniones">
-      <video src="img/evento-comunion.mp4" muted playsinline loop></video>
-      <div class="ev-label"><strong>Celebraciones y Comuniones</strong><span>Momentos únicos con menú especial</span></div>
-      <div class="ev-play">▶</div>
-    </div>
-
-    <div class="evento-card rv" data-src="img/evento-mes-del-amor.mp4" data-type="video" data-label="Mes del amor y San Valentín">
-      <video src="img/evento-mes-del-amor.mp4" muted playsinline loop></video>
-      <div class="ev-label"><strong>Mes del amor</strong><span>Una experiencia para dos</span></div>
-      <div class="ev-play">▶</div>
-    </div>
-
-    <div class="evento-card rv" data-src="img/momento-semana-santa-nuevo.mp4" data-type="video" data-label="Semana Santa">
-      <video src="img/momento-semana-santa-nuevo.mp4" muted playsinline loop></video>
-      <div class="ev-label"><strong>Semana Santa</strong><span>Opciones especiales de mariscos</span></div>
-      <div class="ev-play">▶</div>
-    </div>
-
-    <div class="evento-card rv" data-src="img/momento-ambiente-noche.mp4" data-type="video" data-label="Noches en la Terraza">
-      <video src="img/momento-ambiente-noche.mp4" muted playsinline loop></video>
-      <div class="ev-label"><strong>Noches en la Terraza</strong><span>Cócteles, brisa y buena música</span></div>
-      <div class="ev-play">▶</div>
-    </div>
-
-    <div class="evento-card rv" data-src="img/momento-restaurante.mp4" data-type="video" data-label="Experiencia 1529">
-      <video src="img/momento-restaurante.mp4" muted playsinline loop></video>
-      <div class="ev-label"><strong>Experiencia 1529</strong><span>Nuestra cocina y sala en vivo</span></div>
-      <div class="ev-play">▶</div>
-    </div>
-
-    <div class="event-text-card rv">
-      <div>
-        <small>— Corporativos</small>
-        <h3 style="font-size:1.5rem;margin:.5rem 0">Cena navideña corporativa</h3>
-        <p>Plato navideño, buena mesa y el ambiente ideal para cerrar el año con tu equipo. Cupos limitados.</p>
-      </div>
-      <a href="#reservas" class="btn btn-sun" style="margin-top:1.2rem;width:fit-content">Consultar</a>
-    </div>
-
-  </div>
-  <p style="margin-top:1.6rem"><a href="#reservas" class="btn btn-sun">Consultar fechas y reservar</a></p>
+  <div class="event-texts" id="event-texts"></div>
+  <div class="eventos-grid" id="eventos-grid"></div>
+  <p style="margin-top:1.6rem;text-align:center"><a href="#reservas" class="btn btn-sun">Consultar fechas y reservar</a></p>
 </div></section>
-
-<div class="sep" aria-hidden="true"><span>✦</span></div>
 
 <!-- ============================================================
      MOMENTOS — Galería de fotos y videos
@@ -747,106 +681,7 @@ h2{letter-spacing:0.01em}
     <button class="mtab" role="tab" aria-selected="false" data-mcat="video">Videos</button>
   </div>
 
-  <div class="momentos-strip" id="momentos-strip">
-
-    <!-- 13 FOTOS + 3 VIDEOS DE PLATOS ÚNICOS (16 items sin repetición) -->
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-1.jpg" data-type="img" data-label="Cocina 1529">
-      <img src="img/galeria-1.jpg" alt="Cocina 1529" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Cocina</strong><span>Platos de autor</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="video" data-src="img/momento-porkbelly.mp4" data-type="video" data-label="Pork Belly">
-      <video src="img/momento-porkbelly.mp4" muted playsinline loop></video>
-      <span class="mo-badge video">Video</span>
-      <div class="mo-label"><strong>Pork Belly</strong><span>Sabor crujiente de Maracaibo</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-2.jpg" data-type="img" data-label="Ambiente">
-      <img src="img/galeria-2.jpg" alt="Ambiente" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Ambiente</strong><span>Noche en 1529</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="video" data-src="img/momento-lomo-negro.mp4" data-type="video" data-label="Lomo negro de cerdo">
-      <video src="img/momento-lomo-negro.mp4" muted playsinline loop></video>
-      <span class="mo-badge video">Video</span>
-      <div class="mo-label"><strong>Lomo negro de cerdo</strong><span>Entre cada bocado, una historia</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-3.jpg" data-type="img" data-label="Salón">
-      <img src="img/galeria-3.jpg" alt="Salón" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Salón</strong><span>Espacio para celebrar</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="video" data-src="img/momento-burrata-steak.mp4" data-type="video" data-label="Burrata Steak">
-      <video src="img/momento-burrata-steak.mp4" muted playsinline loop></video>
-      <span class="mo-badge video">Video</span>
-      <div class="mo-label"><strong>Burrata Steak</strong><span>Jugoso y coronado de burrata</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-4.jpg" data-type="img" data-label="Postres">
-      <img src="img/galeria-4.jpg" alt="Postres" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Postres</strong><span>Dulce final</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-5.jpg" data-type="img" data-label="Eventos">
-      <img src="img/galeria-5.jpg" alt="Eventos" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Eventos</strong><span>Momentos especiales</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-6.jpg" data-type="img" data-label="Terraza 1529">
-      <img src="img/galeria-6.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Restaurante</strong><span>Nuestra terraza</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-7.jpg" data-type="img" data-label="Mesa servida">
-      <img src="img/galeria-7.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Mesa servida</strong><span>Detalles que marcan</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-8.jpg" data-type="img" data-label="Bar & Cócteles">
-      <img src="img/galeria-8.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Bar</strong><span>Cócteles de autor</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-9.jpg" data-type="img" data-label="Celebraciones">
-      <img src="img/galeria-9.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Celebración</strong><span>Momentos para recordar</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-10.jpg" data-type="img" data-label="Plato especial">
-      <img src="img/galeria-10.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Plato especial</strong><span>Cocina de autor</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-11.jpg" data-type="img" data-label="Vista de salón">
-      <img src="img/galeria-11.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Vista del restaurante</strong><span>El ambiente ideal</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-12.jpg" data-type="img" data-label="Platos estrella">
-      <img src="img/galeria-12.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Platos estrella</strong><span>Chef en acción</span></div>
-    </div>
-
-    <div class="momento-item rv" data-mcat="foto" data-src="img/galeria-13.jpg" data-type="img" data-label="Maracaibo sabe bien">
-      <img src="img/galeria-13.jpg" alt="1529 Restaurant" loading="lazy">
-      <span class="mo-badge foto">Foto</span>
-      <div class="mo-label"><strong>Maracaibo sabe bien</strong><span>Nuestra cocina</span></div>
-    </div>
-
-  </div><!-- /momentos-strip -->
+  <div class="momentos-strip" id="momentos-strip"></div>
 </div></section>
 
 <!-- ============================================================
@@ -854,12 +689,7 @@ h2{letter-spacing:0.01em}
 ============================================================ -->
 <section class="faq" id="preguntas"><div class="wrap">
   <h2 class="rv">Preguntas frecuentes</h2>
-  <details class="nu rv"><summary>¿Dónde están ubicados?</summary><p>En el Centro Comercial Premier, Av. Fuerzas Armadas, segundo piso, Maracaibo.</p></details>
-  <details class="nu rv"><summary>¿Cuál es el horario?</summary><p>De lunes a jueves de 12:00 PM a 11:00 PM, viernes y sábado de 12:00 PM a 2:00 AM, y domingos de 12:00 PM a 10:00 PM.</p></details>
-  <details class="nu rv"><summary>¿Cómo hago una reserva?</summary><p>Con el formulario de esta página, que abre WhatsApp con tu solicitud lista, o por mensaje directo en Instagram.</p></details>
-  <details class="nu rv"><summary>¿Tienen música en vivo?</summary><p>Sí. Hemos tenido noches como «Tributo al talento zuliano» y «Noche de Divas», con entrada libre. Consulta la próxima fecha por WhatsApp.</p></details>
-  <details class="nu rv"><summary>¿Organizan eventos privados?</summary><p>Sí: celebraciones, comuniones, aniversarios y cenas corporativas, con menú amplio y barra de cócteles de autor.</p></details>
-  <details class="nu rv"><summary>¿Tienen estacionamiento?</summary><p>Sí, el Centro Comercial Premier cuenta con estacionamiento disponible para nuestros clientes.</p></details>
+  <div id="faq-list"></div>
 </div></section>
 
 <!-- ============================================================
@@ -870,8 +700,6 @@ h2{letter-spacing:0.01em}
   <p class="lead rv">Novedades del menú, música en vivo y celebraciones. Síguenos en <a href="https://www.instagram.com/1529restaurant/" target="_blank" rel="noopener" style="color:var(--ember);font-weight:700">@1529restaurant</a>.</p>
   <div class="feed" id="feed"></div>
 </div></section>
-
-<div class="sep" aria-hidden="true"><span>✦</span></div>
 
 <!-- ============================================================
      VISITANOS / HORARIO
@@ -884,8 +712,6 @@ h2{letter-spacing:0.01em}
       <p>Centro Comercial Premier<br>Av. Fuerzas Armadas, segundo piso, Maracaibo, Zulia</p>
       <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem">
         <a class="btn btn-sun" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=1529+Restaurant+C.C.+Premier+Maracaibo">Cómo llegar</a>
-        <a class="btn btn-glass" target="_blank" rel="noopener" href="https://www.instagram.com/1529restaurant/">Instagram</a>
-        <a class="btn btn-glass" target="_blank" rel="noopener" href="https://www.tiktok.com/@1529restaurant">TikTok</a>
       </div>
     </div>
     <div class="glass rv">
@@ -898,8 +724,6 @@ h2{letter-spacing:0.01em}
     </div>
   </div>
 </div></section>
-
-<div class="sep" aria-hidden="true"><span>✦</span></div>
 
 <!-- ============================================================
      RESERVAS
@@ -926,13 +750,13 @@ h2{letter-spacing:0.01em}
      FOOTER
 ============================================================ -->
 <footer>
-  <div class="logo" style="justify-content:center"><img src="favicon.svg" alt="1529">Mil <b>1529</b></div>
+  <div class="logo" style="justify-content:center"><img src="favicon.svg" alt="1529" width="56" height="56"></div>
   <p>Mil Quinientos Veintinueve · C.C. Premier, Maracaibo</p>
   <div class="social-links">
-    <a href="https://www.instagram.com/1529restaurant/" target="_blank" rel="noopener">Instagram @1529restaurant</a>
-    <a href="https://www.tiktok.com/@1529restaurant" target="_blank" rel="noopener">TikTok @1529restaurant</a>
+    <a href="https://www.instagram.com/1529restaurant/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@1529restaurant" target="_blank" rel="noopener">TikTok</a>
   </div>
-  <button class="admin-link" id="adminOpen">Acceso del personal</button>
+  <a class="admin-link" href="admin.html">Acceso del personal</a>
 </footer>
 
 <!-- ============================================================
@@ -970,58 +794,17 @@ h2{letter-spacing:0.01em}
 </div>
 
 <!-- ============================================================
-     ADMIN MODAL
-============================================================ -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Panel de administración">
-  <div class="panel nu">
-    <div id="login">
-      <h3 style="font-size:2rem;margin-bottom:1rem">Panel del personal</h3>
-      <label for="pin">PIN de acceso</label>
-      <input class="nu-in" id="pin" type="password" inputmode="numeric" style="max-width:240px">
-      <p id="err" style="color:var(--ember);font-size:.85rem;margin:.6rem 0"></p>
-      <button class="btn btn-sun" id="enter">Entrar</button>
-      <button class="btn btn-nu" id="cancel">Cerrar</button>
-    </div>
-    <div id="editor" hidden>
-      <h3 style="font-size:2rem;margin-bottom:.4rem">Editar menú</h3>
-      <p class="lead" style="margin-bottom:1.2rem;font-size:.9rem">Nombre · Precio · Descripción · Foto (URL) · Disponible. Los cambios se guardan en este navegador.</p>
-      <div id="rows"></div>
-      <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.4rem">
-        <button class="btn btn-nu" id="add">+ Plato</button>
-        <button class="btn btn-sun" id="save">Guardar y cerrar</button>
-        <button class="btn btn-nu" id="reset">Restaurar ejemplo</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
      SCRIPTS
 ============================================================ -->
+<script src="menu-data.js"></script>
+<script src="site-core.js"></script>
 <script>
 /* ===== CONFIG ===== */
 const CFG = {whatsapp:"584128268327", pin:"1529", heroVideo:""};
 
 /* ===== MENU DATA ===== */
-const SAMPLE=[
- {c:"Entradas",n:"Pulpo al olió",p:0,d:"Tentáculos dorados, salsa cremosa y un toque fresco y colorido.",i:"",a:true},
- {c:"Entradas",n:"Empanaditas crocantes",p:0,d:"Según la proteína de tu elección.",i:"",a:true},
- {c:"Entradas",n:"Tira de pork belly",p:0,d:"Nueva en el menú. Ideal para compartir.",i:"",a:true},
- {c:"Entradas",n:"Arepitas de lomo de cerdo",p:0,d:"Con queso frito.",i:"",a:true},
- {c:"Principales",n:"Churrasco Santa Bárbara",p:0,d:"400 g de lomo de aguja asado y dos contornos a tu gusto.",i:"",a:true},
- {c:"Principales",n:"Lomo negro de cerdo",p:0,d:"Sabor local con fusión extranjera, acompañado de risotto parmesano.",i:"",a:true},
- {c:"Principales",n:"Burrata Steak",p:0,d:"Jugoso y delicioso, coronado con burrata.",i:"",a:true},
- {c:"Principales",n:"Risotto cremoso con pulpo al grill",p:0,d:"Una combinación pensada para enamorar el paladar.",i:"",a:true},
- {c:"Principales",n:"Linguine con mariscos asados",p:0,d:"Crema de bisque y parmesano, con pulpo, camarones y calamares. Recomendación del chef.",i:"",a:true},
- {c:"Principales",n:"Pasta con lomito y aceitunas",p:0,d:"Lomito, tomates secos, aceitunas verdes y negras, parmesano y salsa con fondo de res.",i:"",a:true},
- {c:"Principales",n:"Pasta a dos salsas",p:0,d:"Pasta corta con crema de ajo porro, quesos, ragú de la casa y albahaca. Con pollo, lomo de cerdo o lomito.",i:"",a:true},
- {c:"Principales",n:"Hamburguesa con papitas",p:0,d:"Opción de almuerzo de domingo.",i:"",a:true},
- {c:"Bebidas",n:"Mojitos clásicos",p:0,d:"Con promoción 2x1 en noches especiales.",i:"",a:true},
- {c:"Bebidas",n:"Margaritas clásicas",p:0,d:"Con promoción en noches especiales.",i:"",a:true},
- {c:"Bebidas",n:"Cócteles de autor",p:0,d:"Barra de tragos y cócteles de la casa.",i:"",a:true},
- {c:"Postres",n:"Quesillo con merey",p:0,d:"Caramelo, merey y ralladura de coco.",i:"",a:true}
-];
-const CATS=["Entradas","Principales","Bebidas","Postres"];
+const SAMPLE=window.MENU_SAMPLE;
+const CATS=window.MENU_CATS;
 let items=[], cat=CATS[0];
 try{items=JSON.parse(localStorage.getItem("m1529v3"))||SAMPLE}catch(e){items=SAMPLE}
 
@@ -1063,7 +846,7 @@ function renderMenu(){
   $("#grid").innerHTML=items.filter(x=>x.c==cat).map(x=>`<article class="dish nu ${x.a?"":"off"}">
    <div class="ph ${REELS[slug(x.n)]?"rl":""}" ${REELS[slug(x.n)]?`data-reel="${REELS[slug(x.n)]}"`:""} data-s="${slug(x.n)}" ${x.i?`style="background-image:url('${esc(x.i)}')"`:""} role="img" aria-label="${esc(x.n)}">${x.i?"":esc(x.n[0])}</div>
    <h3>${esc(x.n)}</h3><p>${esc(x.d)}</p>
-   <div class="price"><span>${x.p>0?"$"+Number(x.p).toFixed(2):"Consultar"}</span><em class="badge" style="font-style:normal">${x.a?"Disponible":"Agotado"}</em></div></article>`).join("")||"<p>Sin platos en esta categoría.</p>";
+   <div class="price">${x.p>0?`<span>$${Number(x.p).toFixed(2)}</span>`:`<a class="cons" target="_blank" rel="noopener" href="https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent("Hola, quiero consultar el precio de: "+x.n)}">Consultar</a>`}<em class="badge" style="font-style:normal">${x.a?"Disponible":"Agotado"}</em></div></article>`).join("")||"<p>Sin platos en esta categoría.</p>";
   loadImgs();
   observeRv();
 }
@@ -1232,6 +1015,16 @@ addEventListener("keydown",e=>{
   if(e.key==="ArrowRight"&&lboxIdx<lboxGallery.length-1){lboxIdx++;renderLbox();}
 });
 
+/* ===== CONTENIDO EDITABLE (panel admin) ===== */
+let SITE=JSON.parse(JSON.stringify(window.SITE_SAMPLE));
+try{const sv=JSON.parse(localStorage.getItem(window.SITE_KEY));if(sv)SITE=Object.assign(SITE,sv)}catch(e){}
+const fmt=t=>esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+const isVid=src=>/\.(mp4|webm|mov|m4v)(\?|$)/i.test(src||"");
+$("#event-texts").innerHTML=SITE.events.texts.map(t=>`<div class="event-text-card rv"><div><small>— ${esc(t.tag)}</small><h3 style="font-size:1.5rem;margin:.5rem 0">${esc(t.title)}</h3><p>${fmt(t.body)}</p></div></div>`).join("");
+$("#eventos-grid").innerHTML=SITE.events.videos.map(v=>`<div class="evento-card rv" data-src="${esc(v.src)}" data-type="video" data-label="${esc(v.title)}"><video src="${esc(v.src)}" muted playsinline loop></video><div class="ev-label"><strong>${esc(v.title)}</strong><span>${esc(v.sub)}</span></div><div class="ev-play">▶</div></div>`).join("");
+$("#momentos-strip").innerHTML=SITE.moments.map(m=>{const v=isVid(m.src);return `<div class="momento-item rv" data-mcat="${v?"video":"foto"}" data-src="${esc(m.src)}" data-type="${v?"video":"img"}" data-label="${esc(m.title)}">${v?`<video src="${esc(m.src)}" muted playsinline loop></video>`:`<img src="${esc(m.src)}" alt="${esc(m.title)}" loading="lazy">`}<span class="mo-badge ${v?"video":"foto"}">${v?"Video":"Foto"}</span><div class="mo-label"><strong>${esc(m.title)}</strong><span>${esc(m.sub)}</span></div></div>`}).join("");
+$("#faq-list").innerHTML=SITE.faq.map(f=>`<details class="nu rv"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
+
 /* ===== EVENTOS — click en video card ===== */
 document.querySelectorAll(".evento-card video, .momento-item video").forEach(v => {
   v.preload = "auto";
@@ -1338,56 +1131,27 @@ $("#vc").onclick=()=>{
   }
 };
 
-/* ===== INSTAGRAM FEED ===== */
-const POSTS=[
-  ["p","Dfno4Roxk4e","11 nov","Cena navideña corporativa","Plato navideño y buena mesa para cerrar el año con tu equipo. Cupos limitados."],
-  ["p","Dfc0mnhjuc0","7 nov","Domingos de almuerzo","Sopa, empanaditas crocantes, pork belly, arepitas de lomo de cerdo o hamburguesa."],
-  ["p","DfXm98dow2H","5 nov","Quesillo con merey","Caramelo, merey y ralladura de coco: lo dulce de nuestra mesa."],
-  ["reel","DfSZMrBxOXt","3 nov","Pulpo al olió","Texturas, salsa cremosa y un toque fresco y colorido."],
-  ["p","DfGWyTKR48h","29 oct","Tributo al talento zuliano","Desde las 9:00 PM, entrada libre y 2×1 en mojitos clásicos."],
-  ["reel","De5b27_xxbj","24 oct","Recomendación del chef","Linguine en crema de bisque con pulpo, camarones y calamares asados."],
-  ["reel","DerqafMxIWY","19 oct","Churrasco Santa Bárbara","400 g de lomo de aguja asado y dos contornos a tu gusto."],
-  ["p","DefiRr7xeYs","14 oct","Noche de Divas","Homenaje musical a las grandes voces. 2 margaritas por $8."],
-  ["reel","DeHu4nLR8W2","5 oct","Dos pastas nuevas","Con lomito y aceitunas, y a dos salsas."]
-];
-$("#feed").innerHTML=POSTS.map(x=>`<a class="card nu rv" ${x[0]==="reel"?`data-reel="${x[1]}"`:`href="https://www.instagram.com/1529restaurant/p/${x[1]}/" target="_blank" rel="noopener"`}><small>${x[2]} · ${x[0]==="reel"?"▶ Ver reel":"Publicación"}</small><h3>${x[3]}</h3><p>${x[4]}</p></a>`).join("");
-observeRv();
-
-/* ===== ADMIN PANEL ===== */
-const M=$("#modal");
-function rows(){
-  $("#rows").innerHTML=items.map((x,i)=>`<div class="row" data-i="${i}">
-   <input class="nu-in" data-k="n" value="${esc(x.n)}" aria-label="Nombre">
-   <input class="nu-in" data-k="p" type="number" step="0.01" value="${x.p}" aria-label="Precio">
-   <input class="nu-in" data-k="d" value="${esc(x.d)}" aria-label="Descripción">
-   <button class="sw" role="switch" aria-checked="${x.a}" aria-label="Disponible" data-k="a"></button>
-   <select class="nu-in" data-k="c" aria-label="Categoría">${CATS.map(c=>`<option ${c==x.c?"selected":""}>${c}</option>`).join("")}</select>
-   <input class="nu-in" data-k="i" placeholder="URL de la foto" value="${x.i.startsWith("data:")?"":(esc(x.i)||"")}" aria-label="Foto" style="grid-column:span 2">
-   <input type="file" accept="image/*" data-file aria-label="Subir foto" style="grid-column:span 3;font-size:.8rem">
-   <button class="btn btn-nu" data-del style="padding:.5rem 1rem" aria-label="Eliminar">✕</button></div>`).join("");
+/* ===== INSTAGRAM FEED (manual con rotación o automático) ===== */
+const FEED_CK="m1529feedcache";
+function drawFeed(list){
+  const F=SITE.feed;
+  $("#feed").innerHTML=list.slice(0,F.max||9).map(p=>{
+    const ig=IG.parse(p.u),reel=ig&&ig.t==="reel";
+    const attrs=reel?`data-reel="${esc(ig.id)}" href="${esc(p.u)}"`:`href="${esc(p.u)}" target="_blank" rel="noopener"`;
+    return `<a class="card nu rv" ${attrs}>${p.img?`<img class="cimg" src="${esc(p.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:""}<small>${esc(p.date||"")} · ${reel?"▶ Ver reel":"Publicación"}</small><h3>${esc(p.title)}</h3><p>${esc(p.body||"")}</p></a>`}).join("");
+  observeRv();
 }
-$("#adminOpen").onclick=()=>{M.classList.add("show");$("#login").hidden=false;$("#editor").hidden=true;$("#pin").value="";$("#pin").focus()};
-const closeAdmin=()=>M.classList.remove("show");
-$("#cancel").onclick=closeAdmin;
-M.addEventListener("click",e=>{if(e.target===M)closeAdmin()});
-addEventListener("keydown",e=>{if(e.key=="Escape"&&!lbox.classList.contains("show"))closeAdmin()});
-$("#enter").onclick=()=>{if($("#pin").value===CFG.pin){$("#login").hidden=true;$("#editor").hidden=false;rows()}else $("#err").textContent="PIN incorrecto."};
-$("#rows").addEventListener("input",e=>{const r=e.target.closest(".row");if(!r||!e.target.dataset.k)return;items[r.dataset.i][e.target.dataset.k]=e.target.value});
-$("#rows").addEventListener("change",e=>{
-  const f=e.target.files&&e.target.files[0],r=e.target.closest(".row");
-  if(!f||!r||!e.target.hasAttribute("data-file"))return;
-  const img=new Image();
-  img.onload=()=>{const k=Math.min(1,900/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=img.width*k;c.height=img.height*k;c.getContext("2d").drawImage(img,0,0,c.width,c.height);items[r.dataset.i].i=c.toDataURL("image/jpeg",.8);e.target.style.color="#216b3a"};
-  img.src=URL.createObjectURL(f);
-});
-$("#rows").addEventListener("click",e=>{
-  const r=e.target.closest(".row");if(!r)return;const i=r.dataset.i;
-  if(e.target.dataset.k=="a"){items[i].a=!items[i].a;e.target.setAttribute("aria-checked",items[i].a)}
-  if(e.target.hasAttribute("data-del")){items.splice(i,1);rows()}
-});
-$("#add").onclick=()=>{items.push({c:cat,n:"Nuevo plato",p:0,d:"Descripción",i:"",a:true});rows()};
-$("#save").onclick=()=>{try{localStorage.setItem("m1529v3",JSON.stringify(items))}catch(e){}renderMenu();closeAdmin()};
-$("#reset").onclick=()=>{items=JSON.parse(JSON.stringify(SAMPLE));try{localStorage.removeItem("m1529v3")}catch(e){}rows();renderMenu()};
+async function loadFeed(){
+  const F=SITE.feed;
+  if(F.mode!=="auto"||!F.source){drawFeed(F.posts||[]);return}
+  let c=null;try{c=JSON.parse(localStorage.getItem(FEED_CK)||"null")}catch(e){}
+  const ok=c&&c.src===F.source&&c.posts&&c.posts.length;
+  drawFeed(ok?c.posts:(F.posts||[]));
+  if(ok&&Date.now()-c.t<20*60e3)return;
+  try{const n=await IG.fetch(F.source,F.max||9);if(n.length){try{localStorage.setItem(FEED_CK,JSON.stringify({src:F.source,t:Date.now(),posts:n}))}catch(e){}drawFeed(n)}}catch(e){}
+}
+loadFeed();
+
 </script>
 </body>
 </html>
